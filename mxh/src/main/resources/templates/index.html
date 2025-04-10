@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="images/image.png" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Facebook</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
+    <link th:href="@{/css/post/boxicons.min.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">npm create vite@4.1.0
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link th:href="@{/css/post/style.css}" rel="stylesheet">
+    <link th:href="@{/css/post/components.css}" rel="stylesheet">
+    <link th:href="@{/css/post/media.css}" rel="stylesheet">
+    <link th:href="@{/css/post/chat.css}" rel="stylesheet">
+    <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.4.0/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    <script th:src="@{/js/Socket.js}"></script>
+    <script th:src="@{/js/Navarbar.js}"></script>
+    <!-- <script th:src="@{/js/interaction.js}"></script> -->
+    <script th:src="@{/js/Post/Posts.js}"></script>
+    <script th:src="@{/js/Post/Comments.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+</head>
+
+<body class="newsfeed">
+
+    <div class="container-fluid" id="wrapper">
+        <div class="row newsfeed-size">
+            <div class="col-md-12 newsfeed-right-side">
+                <nav id="navbar-main" class="navbar navbar-expand-lg shadow-sm sticky-top">
+                    <div class="w-100 justify-content-md-center">
+                        <ul class="navbar-nav mr-5 flex-row" id="main_menu">
+                            <a class="navbar-brand nav-item mr-lg-5" th:href="@{/}"><img th:src="@{/images/image.png}" width="40" height="40" class="mr-3" alt="Logo" id="home"></a>
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <form class="w-30 mx-2 my-auto d-inline form-inline mr-5 dropdown search-form">
+                                <div class="input-group" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="searchDropdown">
+                                    <input type="text" class="form-control search-input w-75" placeholder="Search for people, companies, events and more..." aria-label="Search" aria-describedby="search-addon">
+                                    <div class="input-group-append">
+                                        <button class="btn search-button" type="button"><i class='bx bx-search'></i></button>
+                                    </div>
+                                </div>
+                                <ul class="dropdown-menu notify-drop nav-drop shadow-sm" aria-labelledby="searchDropdown">
+                                    <div class="notify-drop-title">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6 fs-8">Search Results <span class="badge badge-pill badge-primary ml-2">29</span></div>
+                                        </div>
+                                    </div>
+                                    <!-- end notify title -->
+                                    <!-- notify content -->
+                                    <div class="drop-content">
+                                        <h6 class="dropdown-header">Peoples</h6>
+                                        <li class="dropdown-item">
+                                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                                <div class="notify-img">
+                                                    <img src="#" alt="Search result">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                                <a href="#" class="notification-user">Susan P. Jarvis</a>
+                                                <a href="#" class="btn btn-quick-link join-group-btn border text-right float-right">
+                                                    Add Friend
+                                                </a>
+                                                <p class="time">6 Mutual friends</p>
+                                            </div>
+                                        </li>
+                                        <h6 class="dropdown-header">Groups</h6>
+                                        <li class="dropdown-item">
+                                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                                <div class="notify-img">
+                                                    <img src="#" alt="Search result">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                                <a href="#" class="notification-user">Tourism</a>
+                                                <a href="#" class="btn btn-quick-link join-group-btn border text-right float-right">
+                                                    Join
+                                                </a>
+                                                <p class="time">2.5k Members 35+ post a week</p>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="notify-drop-footer text-center">
+                                        <a href="#">See More</a>
+                                    </div>
+                                </ul>
+                            </form>
+                            <!-- Nhắn tin -->
+                            <li class="nav-item s-nav dropdown message-drop-li">
+                                <a href="#" class="nav-link nav-links message-drop drop-w-tooltip" data-toggle="dropdown" data-placement="bottom" data-title="Messages" role="button" aria-haspopup="true" aria-expanded="false" onclick="redirectToMessagePage()" id="message">
+                                    <img th:src="@{/images/icons/navbar/message.png}" class="message-dropdown" alt="navbar icon"> <span class="badge badge-pill badge-primary">1</span>
+                                </a>                                
+                                <ul class="dropdown-menu notify-drop dropdown-menu-right nav-drop shadow-sm">
+                                    <div class="notify-drop-title">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6 fs-8">Messages | <a href="#">Requests</a></div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                                <a href="#" class="notify-right-icon">
+                                                    Mark All as Read
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end notify title -->
+                                    <!-- notify content -->
+                                    <div class="drop-content">
+                                        <!-- Xo danh sach -->
+                                        <li>
+                                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                                <div class="notify-img">
+                                                    <img th:src="@{/images/users/user-6.png}" alt="notification user image">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                                <a href="#" class="notification-user">Susan P. Jarvis</a>
+                                                <a href="#" class="notify-right-icon">
+                                                    <i class='bx bx-radio-circle-marked'></i>
+                                                </a>
+                                                <p class="time">
+                                                    <i class='bx bx-check'></i> This party is going to have a DJ, food, and drinks.
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="notify-drop-footer text-center">
+                                        <a href="#">See More</a>
+                                    </div>
+                                </ul>
+                            </li>
+                            <!-- Thêm bạn bè -->
+                            <li class="nav-item s-nav dropdown friend-request">
+                                <a th:href="@{/listfriend}" class="nav-link nav-links rm-drop-mobile drop-w-tooltip" data-toggle="dropdown" data-placement="bottom" data-title="Friend Requests" role="button" aria-haspopup="true" aria-expanded="false" id="friend-request">
+                                    <span class="badge-pill badge-primary">
+                                        <img class="friend-request-icon" src="/images/icons/navbar/group.png" alt="Friend Request Icon">
+                                        <span id="friend-request-count">0</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <!-- Thông báo -->
+                            <li class="nav-item s-nav dropdown notification">
+                                <a href="#" class="nav-link nav-links rm-drop-mobile drop-w-tooltip" data-toggle="dropdown" data-placement="bottom" data-title="Notifications" role="button" aria-haspopup="true" aria-expanded="false" id="notification">
+                                    <img th:src="@{/images/icons/navbar/notification.png}" class="notification-bell" alt="navbar icon">
+                                    <span id="quantityNotification" class="badge-pill badge-primary unread-messages" style="display: none;"></span>
+                                </a>
+                                <ul class="dropdown-menu notify-drop dropdown-menu-right nav-drop shadow-sm">
+                                    <div class="notify-drop-title">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6 fs-8">Notifications <span id="quantityNotification" class="badge-pill badge-primary unread-messages" style="display: none;"></span></div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                                <a href="#" class="notify-right-icon">
+                                                    Mark All as Read
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="drop-content"> </div>
+                                    <div class="notify-drop-footer text-center">
+                                        <a href="#">See More</a>
+                                    </div>
+                                </ul>                                
+                            </li>
+                            <li class="nav-item s-nav">
+                                <a id="profileLink" class="nav-link nav-links">
+                                    <div class="menu-user-image">
+                                        <img id="avartaruser" class="menu-user-img ml-1" alt="Menu Image">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item s-nav nav-icon dropdown">
+                                <a href="#" id="logout-link" class="nav-link logout-link" style="color: black;">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
+                                
+                                <div class="dropdown-menu dropdown-menu-right settings-dropdown shadow-sm" aria-labelledby="settings-dropdown">
+                                    <a class="dropdown-item" href="#">
+                                        <img th:src="@{/images/icons/navbar/help.png}" alt="Navbar icon"> Help Center</a>
+                                    <a class="dropdown-item d-flex align-items-center dark-mode" onClick="event.stopPropagation();" href="#">
+                                        <img th:src="@{/images/icons/navbar/moon.png}" alt="Navbar icon"> Dark Mode
+                                        <button type="button" class="btn btn-lg btn-toggle ml-auto" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                            <div class="handle"></div>
+                                        </button>
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <img th:src="@{/images/icons/navbar/gear-1.png}" alt="Navbar icon"> Settings</a>
+                                    <a class="dropdown-item logout-btn" href="#">
+                                        <img th:src="@{/images/icons/navbar/logout.png}" alt="Navbar icon"> Log Out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="row newsfeed-right-side-content mt-3 justify-content-center">
+                    <div class="col-md-6 second-section col-6" id="page-content-wrapper">
+                        <ul class="list-unstyled" style="margin-bottom: 0;">
+                            <li class="media post-form w-shadow" >
+                                <div class="media-body">
+                                    <!-- Form UPLOADPOST -->
+                                    <div class="central-meta">
+                                        <div class="new-postbox">
+                                            <figure>
+                                                <img src="#" alt="">
+                                            </figure>
+                                            <div class="newpst-input">
+                                                <form id="uploadPostUser" enctype="multipart/form-data">
+                                                    <textarea rows="2" placeholder="write something" id="contentPost" name="content"></textarea>
+                                                    <div class="attachments">
+                                                        <ul>
+                                                            <li>
+                                                                <i class="fa fa-image"></i>
+                                                                <label class="fileContainer">
+                                                                    <input name="image" id="imagePost" type="file" onchange="previewImage(event)" placeholder="Choose Image">
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <button type="submit">Post</button>
+                                                            </li>
+                                                        </ul>
+                                                        <div id="image-preview-container">
+                                                            <img id="imagePreview" src="images/icons/theme/post-image.png" alt="Image Preview" style="max-width: 300px; max-height: 300px; display: none;"/>
+                                                            <span id="remove-image-span" style="cursor: pointer; display: none;" onclick="removeImage()">&times;</span>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!-- Posts -->
+                        <div class="posts-section mt-5 mb-5" id="displaycontent">
+                            <!-- Vong lap for hien thi danh sach post -->
+                           
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comments -->
+    <div class="border-top pt-3 hide-comments" id="commentslist" data-id="" style="display: none;">
+        
+    </div>
+    
+    <!-- Optional -->
+    <script type="text/javascript">
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        NProgress.start();
+
+        // Bắt đầu thanh tiến trình khi người dùng nhấp vào logo
+        document.getElementById('home').addEventListener('click', function() {
+            NProgress.start();
+        });
+
+        // Bắt đầu thanh tiến trình khi người dùng nhấp vào biểu tượng nhắn tin
+        document.getElementById('message').addEventListener('click', function() {
+            NProgress.start();
+        });
+
+        // Bắt đầu thanh tiến trình khi người dùng nhấp vào biểu tượng bạn bè
+        document.getElementById('friend-request').addEventListener('click', function() {
+            NProgress.start();
+        });
+
+
+        // Bắt đầu thanh tiến trình khi người dùng nhấp vào biểu tượng profile
+        document.getElementById('profileLink').addEventListener('click', function() {
+            NProgress.start(); 
+        });
+
+        // Dừng thanh tiến trình khi trang đã tải xong
+        window.addEventListener('load', function() {
+            NProgress.done();
+        });
+    </script>
+</body>
+
+</html>
