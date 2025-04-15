@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import com.nhom6.mxh.Models.User.User;
 
 import jakarta.transaction.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
+@CrossOrigin(origins = "*")
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.nhom6.mxh.DTO.UserDTO;
 import com.nhom6.mxh.Models.User.User;
+import org.springframework.web.bind.annotation.CrossOrigin;
+@CrossOrigin(origins = "*")
 
 public interface UserService {
     List<User> fillAll();
