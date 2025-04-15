@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from './Components/LoginAndLogout/Login';
 import Home from './Components/Home/Home';
+import Trangchu from './Components/Home/Trangchu'
 import "./App.css"
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/tc" element={<Home />} />
+        <Route path="/tc" element={<Trangchu />} />
       </Routes>
     </Router>
   );
