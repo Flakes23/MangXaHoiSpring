@@ -1,72 +1,135 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import 'nprogress/nprogress.css';
-import './Login.css'
+import { useState } from "react"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./Login.css"
 import { SignIn } from "../ApiFunctions";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Thêm useNavigate để chuyển trang
+import { useNavigate } from "react-router-dom"
 
 function Login() {
-    const navigate = useNavigate(); // Khai báo navigate để chuyển trang
-  const [taikhoan, setTaikhoan] = useState("");
-  const [matkhau, setMatkhau] = useState(""); 
+  const navigate = useNavigate()
+  const [taikhoan, setTaikhoan] = useState("")
+  const [matkhau, setMatkhau] = useState("")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-  
-    const success = await SignIn(taikhoan, matkhau);
-    if (success) {
-      navigate("/tc");
+    e.preventDefault()
+    setLoading(true)
+
+    try {
+      const success = await SignIn(taikhoan, matkhau)
+
+      if (success) {
+        navigate("/tc")
+      } else {
+        setError("Tài khoản hoặc mật khẩu không đúng.")
+      }
+    } catch (error) {
+      setError("Có lỗi trong quá trình đăng nhập. Vui lòng thử lại.")
+    } finally {
+      setLoading(false)
     }
-  };
-  
-  
-      
+  }
 
-    return (  
-        <div className="container">
-            <div className="row">
-                <div className="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
-                    <div className="panel border bg-white">
-                        <div className="panel-heading">
-                            <h3 className="pt-3 font-weight-bold">Login</h3>
-                        </div>
-                        <div className="panel-body p-3">
-                            <form onSubmit={handleLogin} method="POST" id="formLogin">
-                                <div className="form-group py-2">
-                                    <div className="input-field">
-                                        <span className="far fa-user p-2"></span>
-                                        <input name="username" id="inputEmail4" type="text" placeholder="Username or Email" 
-                                        value={taikhoan}
-                                        onChange={(e) => setTaikhoan(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="error errorEmail" style={{ color: "red", display: "none" }}></div>
-                                </div>
-                                <div className="form-group py-1 pb-2">
-                                    <div className="input-field">
-                                        <span className="fas fa-lock px-2"></span>
-                                        <input name="password" id="inputPassword4" type="password" placeholder="Enter your Password" 
-                                                        value={matkhau} onChange={(e) => setMatkhau(e.target.value)}
-
-                                        />
-                                    </div>
-                                    <div className="error errorPassword" style={{ color: "red" }}></div>
-                                </div>
-                                <div className="form-inline">
-                                    <a href="#" id="forgot" className="font-weight-bold">Forgot password?</a>
-                                </div>
-                                <button type="submit" className="btn btn-primary btn-block mt-3" id="loginBtn">Login</button>
-                                <div className="text-center pt-4 text-muted">
-                                    Don't have an account? <a href="/register" id="registerLink">Sign up</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="login-container">
+      <div className="login-card">
+        <div className="login-card-left">
+          <div className="login-brand">
+            <h2>Nhóm 6</h2>
+          </div>
+          <div className="login-welcome">
+            <h1>
+              Chào mừng
+              <br />
+              trở lại!
+            </h1>
+            <p>Đăng nhập để tiếp tục trải nghiệm dịch vụ của chúng tôi</p>
+          </div>
+          <div className="login-image">
+          </div>
         </div>
-    );
+        <div className="login-card-right">
+          <div className="login-header">
+            <h2>Đăng nhập</h2>
+            <p>Vui lòng nhập thông tin đăng nhập của bạn</p>
+          </div>
+
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <label htmlFor="username">Tài khoản</label>
+              <div className="input-with-icon">
+                <i className="bi bi-person"></i>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="username"
+                  placeholder="Nhập tên đăng nhập hoặc email"
+                  value={taikhoan}
+                  onChange={(e) => setTaikhoan(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">Mật khẩu</label>
+              <div className="input-with-icon">
+                <i className="bi bi-lock"></i>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  placeholder="Nhập mật khẩu"
+                  value={matkhau}
+                  onChange={(e) => setMatkhau(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="form-check custom-checkbox">
+              <input type="checkbox" className="form-check-input" id="remember" />
+              <label className="form-check-label" htmlFor="remember">
+                Ghi nhớ đăng nhập
+              </label>
+            </div>
+
+            <div className="error-container">
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                  {error}
+                </div>
+              )}
+            </div>
+
+            <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+              {loading ? (
+                <>
+                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  Đang đăng nhập...
+                </>
+              ) : (
+                "Đăng nhập"
+              )}
+            </button>
+
+            <div className="separator">
+              <span>hoặc</span>
+            </div>
+
+            <button type="button" className="btn btn-outline-secondary btn-block google-btn">
+              <i className="bi bi-google"></i>
+              <span>Đăng nhập với Google</span>
+            </button>
+
+            <div className="register-link">
+              Chưa có tài khoản? <a href="/register">Đăng ký ngay</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default Login;
+export default Login
+

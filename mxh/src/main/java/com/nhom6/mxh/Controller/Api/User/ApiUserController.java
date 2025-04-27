@@ -107,13 +107,13 @@ public class ApiUserController {
             return ResponseEntity.ok().build();
     }
 
-  @PostMapping("/api/usercurrent")
-public ResponseEntity<?> userCurrent(@RequestParam String taikhoan, @RequestParam String matkhau) {
-    UserDetails userDetails = userDetailsService.loadUserByUsername(taikhoan);
-    User user = userService.findByEmail(userDetails.getUsername());
-    Hibernate.initialize(user.getImage());
-    return ResponseEntity.ok(user);
-}
+    @PostMapping("/api/usercurrent")
+    public ResponseEntity<?> userCurrent(@RequestParam String taikhoan, @RequestParam String matkhau) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(taikhoan);
+        User user = userService.findByEmail(userDetails.getUsername());
+        Hibernate.initialize(user.getImage());
+        return ResponseEntity.ok(user);
+    }
 
     @PostMapping("/api/register")
     public ResponseEntity<?> register(

@@ -11,11 +11,9 @@ export async function SignIn(taikhoan, matkhau) {
     try {
         const response = await api.post("/api/usercurrent", formData);
         if (response.status === 200) {
-            alert("Đăng nhập thành công!");
             return true;
         }
     } catch (error) {
-        alert("Sai tài khoản hoặc mật khẩu!");
         return false;
     }
 }

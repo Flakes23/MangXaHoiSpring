@@ -320,7 +320,7 @@ function Trangchu() {
                           <div className="newpst-input">
                             <form
                               id="uploadPostUser"
-                              enctype="multipart/form-data"
+                              encType="multipart/form-data"
                             >
                               <textarea
                                 rows="2"
@@ -388,7 +388,7 @@ function Trangchu() {
         className="border-top pt-3 hide-comments"
         id="commentslist"
         data-id=""
-        style={{ display: none }}
+        style={{ display: "none" }}
       ></div>
     </>
   );
