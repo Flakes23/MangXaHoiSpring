@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from './Components/LoginAndLogout/Login';
+import Login from './Components/User/Login';
 import Home from './Components/Home/Home';
 import Trangchu from './Components/Home/Trangchu'
 import "./App.css"
