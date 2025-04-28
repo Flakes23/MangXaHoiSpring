@@ -1,396 +1,610 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "nprogress/nprogress.css";
-function Trangchu() {
-  return (
-    <>
-      <div className="container-fluid" id="wrapper">
-        <div className="row newsfeed-size">
-          <div className="col-md-12 newsfeed-right-side">
-            <nav
-              id="navbar-main"
-              className="navbar navbar-expand-lg shadow-sm sticky-top"
-            >
-              <div className="w-100 justify-content-md-center">
-                <ul className="navbar-nav mr-5 flex-row" id="main_menu">
-                  <a className="navbar-brand nav-item mr-lg-5" th:href="@{/}">
-                    <img
-                      th:src="@{/images/image.png}"
-                      width="40"
-                      height="40"
-                      className="mr-3"
-                      alt="Logo"
-                      id="home"
-                    />
-                  </a>
-                  <form className="w-30 mx-2 my-auto d-inline form-inline mr-5 dropdown search-form">
-                    <div
-                      className="input-group"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      id="searchDropdown"
-                    >
-                      <input
-                        type="text"
-                        className="form-control search-input w-75"
-                        placeholder="Search for people, companies, events and more..."
-                        aria-label="Search"
-                        aria-describedby="search-addon"
-                      />
-                      <div className="input-group-append">
-                        <button className="btn search-button" type="button">
-                          <i className="bx bx-search"></i>
-                        </button>
-                      </div>
-                    </div>
-                    <ul
-                      className="dropdown-menu notify-drop nav-drop shadow-sm"
-                      aria-labelledby="searchDropdown"
-                    >
-                      <div className="notify-drop-title">
-                        <div className="row">
-                          <div className="col-md-6 col-sm-6 col-xs-6 fs-8">
-                            Search Results{" "}
-                            <span className="badge badge-pill badge-primary ml-2">
-                              29
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="drop-content">
-                        <h6 className="dropdown-header">Peoples</h6>
-                        <li className="dropdown-item">
-                          <div className="col-md-2 col-sm-2 col-xs-2">
-                            <div className="notify-img">
-                              <img src="#" alt="Search result" />
-                            </div>
-                          </div>
-                          <div className="col-md-10 col-sm-10 col-xs-10">
-                            <a href="#" className="notification-user">
-                              Susan P. Jarvis
-                            </a>
-                            <a
-                              href="#"
-                              className="btn btn-quick-link join-group-btn border text-right float-right"
-                            >
-                              Add Friend
-                            </a>
-                            <p className="time">6 Mutual friends</p>
-                          </div>
-                        </li>
-                        <h6 className="dropdown-header">Groups</h6>
-                        <li className="dropdown-item">
-                          <div className="col-md-2 col-sm-2 col-xs-2">
-                            <div className="notify-img">
-                              <img src="#" alt="Search result" />
-                            </div>
-                          </div>
-                          <div className="col-md-10 col-sm-10 col-xs-10">
-                            <a href="#" className="notification-user">
-                              Tourism
-                            </a>
-                            <a
-                              href="#"
-                              className="btn btn-quick-link join-group-btn border text-right float-right"
-                            >
-                              Join
-                            </a>
-                            <p className="time">2.5k Members 35+ post a week</p>
-                          </div>
-                        </li>
-                      </div>
-                      <div className="notify-drop-footer text-center">
-                        <a href="#">See More</a>
-                      </div>
-                    </ul>
-                  </form>
-                  <li className="nav-item s-nav dropdown message-drop-li">
-                    <a
-                      href="#"
-                      className="nav-link nav-links message-drop drop-w-tooltip"
-                      data-toggle="dropdown"
-                      data-placement="bottom"
-                      data-title="Messages"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      id="message"
-                    >
-                      <img
-                        th:src="@{/images/icons/navbar/message.png}"
-                        className="message-dropdown"
-                        alt="navbar icon"
-                      />{" "}
-                      <span className="badge badge-pill badge-primary">1</span>
-                    </a>
-                    <ul className="dropdown-menu notify-drop dropdown-menu-right nav-drop shadow-sm">
-                      <div className="notify-drop-title">
-                        <div className="row">
-                          <div className="col-md-6 col-sm-6 col-xs-6 fs-8">
-                            Messages | <a href="#">Requests</a>
-                          </div>
-                          <div className="col-md-6 col-sm-6 col-xs-6 text-right">
-                            <a href="#" className="notify-right-icon">
-                              Mark All as Read
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="drop-content">
-                        <li>
-                          <div className="col-md-2 col-sm-2 col-xs-2">
-                            <div className="notify-img">
-                              <img
-                                th:src="@{/images/users/user-6.png}"
-                                alt="notification user image"
-                              />
-                            </div>
-                          </div>
-                          <div className="col-md-10 col-sm-10 col-xs-10">
-                            <a href="#" className="notification-user">
-                              Susan P. Jarvis
-                            </a>
-                            <a href="#" className="notify-right-icon">
-                              <i className="bx bx-radio-circle-marked"></i>
-                            </a>
-                            <p className="time">
-                              <i className="bx bx-check"></i> This party is
-                              going to have a DJ, food, and drinks.
-                            </p>
-                          </div>
-                        </li>
-                      </div>
-                      <div className="notify-drop-footer text-center">
-                        <a href="#">See More</a>
-                      </div>
-                    </ul>
-                  </li>
-                  <li className="nav-item s-nav dropdown friend-request">
-                    <a
-                      th:href="@{/listfriend}"
-                      className="nav-link nav-links rm-drop-mobile drop-w-tooltip"
-                      data-toggle="dropdown"
-                      data-placement="bottom"
-                      data-title="Friend Requests"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      id="friend-request"
-                    >
-                      <span className="badge-pill badge-primary">
-                        <img
-                          className="friend-request-icon"
-                          src="/images/icons/navbar/group.png"
-                          alt="Friend Request Icon"
-                        />
-                        <span id="friend-request-count">0</span>
-                      </span>
-                    </a>
-                  </li>
-                  <li className="nav-item s-nav dropdown notification">
-                    <a
-                      href="#"
-                      className="nav-link nav-links rm-drop-mobile drop-w-tooltip"
-                      data-toggle="dropdown"
-                      data-placement="bottom"
-                      data-title="Notifications"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      id="notification"
-                    >
-                      <img
-                        th:src="@{/images/icons/navbar/notification.png}"
-                        className="notification-bell"
-                        alt="navbar icon"
-                      />
-                      <span
-                        id="quantityNotification"
-                        className="badge-pill badge-primary unread-messages"
-                        // style={{ display: none }}
-                      ></span>
-                    </a>
-                    <ul className="dropdown-menu notify-drop dropdown-menu-right nav-drop shadow-sm">
-                      <div className="notify-drop-title">
-                        <div className="row">
-                          <div className="col-md-6 col-sm-6 col-xs-6 fs-8">
-                            Notifications{" "}
-                            <span
-                              id="quantityNotification"
-                              className="badge-pill badge-primary unread-messages"
-                              style="display: none;"
-                            ></span>
-                          </div>
-                          <div className="col-md-6 col-sm-6 col-xs-6 text-right">
-                            <a href="#" className="notify-right-icon">
-                              Mark All as Read
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="drop-content"> </div>
-                      <div className="notify-drop-footer text-center">
-                        <a href="#">See More</a>
-                      </div>
-                    </ul>
-                  </li>
-                  <li className="nav-item s-nav">
-                    <a id="profileLink" className="nav-link nav-links">
-                      <div className="menu-user-image">
-                        <img
-                          id="avartaruser"
-                          className="menu-user-img ml-1"
-                          alt="Menu Image"
-                        />
-                      </div>
-                    </a>
-                  </li>
-                  <li className="nav-item s-nav nav-icon dropdown">
-                    <a
-                      href="#"
-                      id="logout-link"
-                      className="nav-link logout-link"
-                    //   style={{ color: black }}
-                    >
-                      <i className="fa-solid fa-right-from-bracket"></i>
-                    </a>
+import "./TrangChu.css";
+import face from "/Images/Icons/face.png";
+import kinh from "/Images/Icons/kinh.svg";
+import home from "/Images/Icons/home.svg";
+import video from "/Images/Icons/video.svg";
+import market from "/Images/Icons/market.svg";
+import group from "/Images/Icons/group.svg";
+import game from "/Images/Icons/game.svg";
+import menu from "/Images/Icons/menu.svg";
+import mess from "/Images/Icons/mess.svg";
+import bell from "/Images/Icons/bell.svg";
 
-                    <div
-                      className="dropdown-menu dropdown-menu-right settings-dropdown shadow-sm"
-                      aria-labelledby="settings-dropdown"
-                    >
-                      <a className="dropdown-item" href="#">
-                        <img
-                          th:src="@{/images/icons/navbar/help.png}"
-                          alt="Navbar icon"
-                        />{" "}
-                        Help Center
-                      </a>
-                      <a
-                        className="dropdown-item d-flex align-items-center dark-mode"
-                        href="#"
-                      >
-                        <img
-                          th:src="@{/images/icons/navbar/moon.png}"
-                          alt="Navbar icon"
-                        />{" "}
-                        Dark Mode
-                        <button
-                          type="button"
-                          className="btn btn-lg btn-toggle ml-auto"
-                          data-toggle="button"
-                          aria-pressed="false"
-                        >
-                          <div className="handle"></div>
-                        </button>
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        <img
-                          th:src="@{/images/icons/navbar/gear-1.png}"
-                          alt="Navbar icon"
-                        />{" "}
-                        Settings
-                      </a>
-                      <a className="dropdown-item logout-btn" href="#">
-                        <img
-                          th:src="@{/images/icons/navbar/logout.png}"
-                          alt="Navbar icon"
-                        />{" "}
-                        Log Out
-                      </a>
-                    </div>
-                  </li>
-                </ul>
+import testa from "/Images/Icons/testa.jpg";
+import picarrow from "/Images/Icons/picarrow.svg";
+import videoo from "/Images/Icons/video.png";
+import abum from "/Images/Icons/abum.png";
+import camxuc from "/Images/Icons/camxuc.png";
+import feed from "/Images/Icons/feed.png";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import caidat from "/Images/Icons/caidat.svg";
+import arrowright from "/Images/Icons/arrowright.svg";
+import help from "/Images/Icons/help.svg";
+import moon from "/Images/Icons/moon.svg";
+import mark from "/Images/Icons/mark.svg";
+import closeface from "/Images/Icons/enter.png";
+function Trangchu() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/trangcanhan");
+  };
+  const ClickSignOut = () => {
+    navigate("/Facebook.com");
+  };
+  const [user, setUser] = useState(null);
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem("user");
+  //   if (storedUser) {
+  //     setUser(JSON.parse(storedUser));
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem("user");
+  //   try {
+  //     if (storedUser) {
+  //       setUser(JSON.parse(storedUser));
+  //     }
+  //   } catch (error) {
+  //     console.error("Lỗi khi parse dữ liệu:", error);
+  //   }
+  // }, []);
+  const [isVisibleavatar, setIsVisibleavatar] = useState(false);
+  const hienkhunganh = () => {
+    setIsVisibleavatar(!isVisibleavatar);
+  };
+
+  const [isVisiblebaidang, setIsVisiblebaidang] = useState(false);
+  const hienbaidang = () => {
+    setIsVisiblebaidang(!isVisiblebaidang);
+  };
+
+  // const [showForm, setShowForm] = useState(false);
+  const [hienModal, setHienModal] = useState(false);
+  const [hienTest, setHienTest] = useState(false);
+
+  const [noidung, setNoidung] = useState("");
+  const [dsBaiViet, setDsBaiViet] = useState([]);
+  useEffect(() => {
+    // Gọi API lấy danh sách bài viết từ database
+    fetch("/poststhu")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Dữ liệu bài viết:", data);
+        setDsBaiViet(data);
+      })
+      .catch((error) => console.error("Lỗi khi lấy bài viết:", error));
+  }, []);
+  // useEffect(() => {
+  //   fetch("/poststhu")
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error('Mã trạng thái HTTP không hợp lệ');
+  //       }
+  //       return response.json();  // Phân tích JSON từ phản hồi
+  //     })
+  //     .then((data) => {
+  //       console.log("Dữ liệu bài viết:", data);
+  //       setDsBaiViet(data);  // Cập nhật state với dữ liệu bài viết
+  //     })
+  //     .catch((error) => console.error("Lỗi khi lấy bài viết:", error));
+  // }, []);
+  
+  
+  
+  
+  
+  // useEffect(() => {
+  //   fetch("http://localhost:8080/posts") // <-- đổi thành /posts
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("Dữ liệu bài viết:", data);
+  //       setDsBaiViet(data);
+  //     })
+  //     .catch((error) => console.error("Lỗi khi lấy bài viết:", error));
+  // }, []);
+
+  // useEffect(() => {
+  //   // Gọi API lấy danh sách bài viết từ database
+  //   fetch("http://localhost:8080/uploadpostuser")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("Dữ liệu bài viết:", data);
+  //       setDsBaiViet(data);
+  //     })
+  //     .catch((error) => console.error("Lỗi khi lấy bài viết:", error));
+  // }, []);
+  //   const handleDangBai = async () => {
+  //     const formData = new FormData();
+  //     formData.append("tennguoidung", user.tennguoidung);
+  //     formData.append("noidung", noidung);
+
+  //     // Nếu có URL của ảnh, chỉ gửi URL đó thay vì gửi file
+  //     if (anhDaTai) {
+  //         formData.append("image", anhDaTai);  // Gửi URL ảnh vào backend
+  //     }
+
+  //     try {
+  //         const response = await fetch("http://localhost:8080/api/baiviet/upload", {
+  //             method: "POST",
+  //             body: formData,
+  //         });
+
+  //         if (!response.ok) {
+  //             throw new Error("Đã xảy ra lỗi khi đăng bài");
+  //         }
+
+  //         const data = await response.json();
+  //         console.log("Bài viết đã được đăng:", data);
+  //     } catch (error) {
+  //         console.error("Lỗi khi đăng bài:", error);
+  //     }
+  // };
+
+  //   const handleDangBai = async () => {
+  //     const formData = new FormData();
+  //     formData.append("tennguoidung", user.tennguoidung);
+  //     formData.append("noidung", noidung);
+  //     if (anhDaTai) {
+  //         formData.append("image", anhDaTai); // Gửi file ảnh lên backend
+  //     }
+
+  //     try {
+  //         const response = await fetch("http://localhost:8080/api/baiviet/upload", {
+  //             method: "POST",
+  //             body: formData
+  //         });
+
+  //         const data = await response.json();
+  //         console.log("Bài viết đã được đăng:", data);
+  //     } catch (error) {
+  //         console.error("Lỗi khi đăng bài:", error);
+  //     }
+  // };
+
+  const handleDangBai = async () => {
+    if (!noidung.trim()) return; // Kiểm tra nếu nội dung rỗng
+
+    const newPostData = {
+      tennguoidung: user.tennguoidung,
+      noidung: noidung, // Đúng biến
+      thoigian: new Date().toISOString(),
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/api/baiviet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newPostData),
+      });
+
+      if (response.ok) {
+        const savedPost = await response.json();
+        setDsBaiViet([savedPost, ...dsBaiViet]); // Cập nhật danh sách bài viết
+        setNoidung(""); // Xóa nội dung input sau khi đăng
+        setHienModal(false); // Ẩn modal sau khi đăng bài
+      } else {
+        console.error("Lỗi khi đăng bài");
+      }
+    } catch (error) {
+      console.error("Lỗi kết nối API:", error);
+    }
+  };
+
+  const [anhDaTai, setAnhDaTai] = useState(null);
+  const handlePaste = (event) => {
+    const items = (event.clipboardData || event.originalEvent.clipboardData)
+      .items;
+    for (let item of items) {
+      if (item.type.indexOf("image") !== -1) {
+        const file = item.getAsFile();
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setAnhDaTai(e.target.result); // Lưu URL ảnh để hiển thị
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  // const handleDangBai = async () => {
+  //   if (!noidung.trim()) return; // Kiểm tra nội dung không rỗng
+  //   const baiviet = {
+  //     tennguoidung: user.tennguoidung,
+  //     noidung,
+  //     thoigian: new Date().toISOString(),
+  //   };
+  //   try {
+  //     const response = await fetch("http://localhost:8080/api/baiviet", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(baiviet),
+  //     });
+  //     if (response.ok) {
+  //       const newPost = await response.json();
+  //       setDsBaiViet([newPost, ...dsBaiViet]); // Cập nhật danh sách bài viết
+  //       setNoidung(""); // Reset nội dung sau khi đăng
+  //       setHienModal(false); // Ẩn modal
+  //     }
+  //   } catch (error) {
+  //     console.error("Lỗi khi đăng bài:", error);
+  //   }
+  // };
+
+  return (
+    <div className="HomeCenterGiuaFromDang">
+      {hienModal && (
+        <div className="modal">
+          <div
+            className="modal_overlay"
+            onClick={() => setHienModal(false)}
+          ></div>
+          <div className="modal_body" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-title">
+              <p>Tạo bài viết</p>
+            </div>
+
+            <div className="gachngang"></div>
+
+            <div className="modalinforuse">
+              <div className="modalinforuseavatar">
+                <img
+                  src={`/Images/Imgbia/${user?.tenanhdaidien || "default.png"}`}
+                  className="picavatatcn"
+                  alt="Ảnh bìa"
+                />
               </div>
-            </nav>
-            <div className="row newsfeed-right-side-content mt-3 justify-content-center">
-              <div
-                className="col-md-6 second-section col-6"
-                id="page-content-wrapper"
-              >
-                <ul className="list-unstyled" style={{ marginbottom: 0 }}>
-                  <li className="media post-form w-shadow">
-                    <div className="media-body">
-                      <div className="central-meta">
-                        <div className="new-postbox">
-                          <figure>
-                            <img src="#" alt="" />
-                          </figure>
-                          <div className="newpst-input">
-                            <form
-                              id="uploadPostUser"
-                              encType="multipart/form-data"
-                            >
-                              <textarea
-                                rows="2"
-                                placeholder="write something"
-                                id="contentPost"
-                                name="content"
-                              ></textarea>
-                              <div className="attachments">
-                                <ul>
-                                  <li>
-                                    <i className="fa fa-image"></i>
-                                    <label className="fileContainer">
-                                      <input
-                                        name="image"
-                                        id="imagePost"
-                                        type="file"
-                                        placeholder="Choose Image"
-                                      />
-                                    </label>
-                                  </li>
-                                  <li>
-                                    <button type="submit">Post</button>
-                                  </li>
-                                </ul>
-                                <div id="image-preview-container">
-                                  <img
-                                    id="imagePreview"
-                                    src="images/icons/theme/post-image.png"
-                                    alt="Image Preview"
-                                    style={{
-                                      maxWidth: 300,
-                                      maxHeight: 300,
-                                      display: "none",
-                                    }}
-                                  />
-                                  <span
-                                    id="remove-image-span"
-                                    style={{
-                                      cursor: "pointer",
-                                      display: "none",
-                                    }}
-                                  >
-                                    &times;
-                                  </span>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-                <div
-                  className="posts-section mt-5 mb-5"
-                  id="displaycontent"
-                ></div>
+              <div className="modalinforuseahaichucnang">
+                <p>{user ? user.tennguoidung : "Đang tải..."}</p>
+                <button className="cong-khai-btn">
+                  <img src={`/Images/Icons/earth.svg`} alt="" />
+                  Công khai
+                  <span className="dropdown-arrow">▼</span>
+                </button>
               </div>
+            </div>
+
+            <div className="modaluserwrite">
+              <textarea
+                style={{
+                  resize: "none",
+                  outline: "none",
+                  borderColor: "white",
+                }}
+                rows="5"
+                cols="66"
+                name="comment"
+                placeholder={
+                  user ? user.tennd + " ơi, bạn đang nghĩ gì?" : "Đang tải..."
+                }
+                value={noidung}
+                onChange={(e) => setNoidung(e.target.value)}
+                onPaste={handlePaste}
+              ></textarea>
+              {anhDaTai && (
+                <img
+                  src={anhDaTai}
+                  alt="Ảnh đã dán"
+                  style={{ width: "490px", height: "300px" }}
+                />
+              )}
+            </div>
+
+            <div className="modaladdpostcover">
+              <div className="modaladdpost">
+                <p>Thêm vào bài viết của bạn</p>
+              </div>
+            </div>
+
+            <div className="modalbamdangcover">
+              <button onClick={handleDangBai}>Đăng</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* {showForm && (
+      <div className="post-form-overlay">
+        <div className="post-form">
+          <h3>Tạo bài viết</h3>
+          <textarea placeholder="Bạn đang nghĩ gì?" autoFocus />
+          <button onClick={() => setShowForm(false)}>Đóng</button>
+        </div>
+      </div>
+    )}; */}
+      <div className="Homebanner">
+        <div className="search-container">
+          <img src={face} alt="Facebook Logo" className="logo" />
+          <div className="search-box">
+            <i>
+              <img
+                src={kinh}
+                style={{ width: "15px", height: "15px", fill: "blue" }}
+              />
+            </i>
+            <input type="text" placeholder="Tìm kiếm trên Facebook" />
+          </div>
+        </div>
+
+        <div className="Bannercenter">
+          <ul>
+            <li>
+              <img src={home} />
+            </li>
+            <li>
+              <img src={video} />
+            </li>
+            <li>
+              <img src={market} />
+            </li>
+            <li>
+              <img src={group} />
+            </li>
+            <li>
+              <img src={game} />
+            </li>
+          </ul>
+        </div>
+
+        <div className="Bannerright">
+          <ul>
+            <li>
+              <img src={"/Images/Icons/menu.svg"} />
+            </li>
+            <li>
+              <img src={mess} />
+            </li>
+            <li>
+              <img src={bell} />
+            </li>
+            {/* <li>
+            <img src={testa} />
+            </li> */}
+          </ul>
+          <div className="Bannerrightanh">
+            <img
+              src={"/Images/Icons/testa.jpg"}
+              className="picavata"
+              onClick={hienkhunganh}
+            />
+            <div className="Bannerrightanhduoi">
+              <img src={picarrow} className="picavatedown" />
             </div>
           </div>
         </div>
       </div>
+      <div className="HomeCenter">
+        <div className="HomeCenterTrai">
+          <div className="HomeCenterTraiTren">
+            <ul>
+              <li className="liavatar" onClick={handleClick}>
+                <div className="centraiavatar">
+                  <img src={"/Images/Icons/testa.jpg"} />
+                </div>
+                {/* <p>Trọng Tấn Dương</p> */}
+                <p>{user ? user.tennguoidung : "Đang tải..."}</p>
+              </li>
+              <li>
+                <div className="menu1"></div>
+                <p>Bạn bè</p>
+              </li>
+              <li>
+                <div className="menu2"></div>
+                <p>Kỷ niệm</p>
+              </li>
 
-      <div
-        className="border-top pt-3 hide-comments"
-        id="commentslist"
-        data-id=""
-        style={{ display: "none" }}
-      ></div>
-    </>
+              <li>
+                <div className="menu3"></div>
+                <p>Đã lưu</p>
+              </li>
+              <li>
+                <div className="menu4"></div>
+                <p>Nhóm</p>
+              </li>
+              <li>
+                <div className="menu5"></div>
+                <p>Video</p>
+              </li>
+              <li>
+                <div className="menu6"></div>
+                <p>Marketplace</p>
+              </li>
+              <li>
+                <div className="centraiavatar">
+                  <img src={feed} />
+                </div>
+                <p>Bảng feed</p>
+              </li>
+
+              <li>
+                <div className="leftcenter">
+                  <img src={picarrow} className="leftcenterarrow" />
+                </div>
+                <p>Xem thêm</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="HomeCenterGiua">
+          <div className="post-box">
+            <div className="post-header">
+              <img src={"/Images/Icons/testa.jpg"} className="avatar" />
+              <input
+                type="text"
+                className="input-box"
+                placeholder="Dương ơi, bạn đang nghĩ gì thế?"
+                onClick={() => setHienModal(true)}
+              />
+            </div>
+            <div className="actions">
+              <div className="action-btn">
+                <img src={videoo} />
+                Video trực tiếp
+              </div>
+              <div className="action-btn">
+                <img src={abum} />
+                Ảnh/video
+              </div>
+              <div className="action-btn">
+                <img src={camxuc} />
+                Cảm xúc/hoạt động
+              </div>
+            </div>
+          </div>
+          <div className="postall">
+            {dsBaiViet.length > 0 ? (
+              dsBaiViet.map((post) => (
+                <div key={post.id} className="postitem">
+                  <div className="postitemup">
+                    {/* <img
+                      src={post.user?.avatarUrl || "/Images/Imgbia/default.png"} // avatar user
+                      className="avatar"
+                    /> */}
+                    <div className="postitemupright">
+                      {/* <p className="postname">
+                        {post.user?.fullName || "Người dùng"}
+                      </p> */}
+                      <p className="postdate">
+                        {(() => {
+                          const now = new Date();
+                          const postDate = new Date(post.createAt);
+
+                          const diffMs = now - postDate;
+                          const diffSeconds = Math.floor(diffMs / 1000);
+                          const diffMinutes = Math.floor(diffSeconds / 60);
+                          const diffHours = Math.floor(diffMinutes / 60);
+                          const diffDays = Math.floor(diffHours / 24);
+
+                          if (diffDays > 0) {
+                            return `${diffDays} ngày trước`;
+                          } else if (diffHours > 0) {
+                            return `${diffHours} giờ trước`;
+                          } else if (diffMinutes > 0) {
+                            return `${diffMinutes} phút trước`;
+                          } else {
+                            return `Vừa xong`;
+                          }
+                        })()}
+                      </p>
+                    </div>
+                    <div className="postitemore">
+                      <img
+                        src={`/Images/Icons/more.svg`}
+                        alt=""
+                        onClick={() => setHienTest(true)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="postinput">
+                    <p>{post.content}</p> {/* nội dung bài viết */}
+                    {post.image && (
+                      <img
+                        src={post.image.urlImage}
+                        alt="Post"
+                        style={{ maxWidth: "100%", marginTop: "10px" }}
+                      />
+                    )}
+                  </div>
+
+                  <div className="gachngang1"></div>
+
+                  <div className="postemotion">
+                    <div className="postemotionlike">
+                      <img src={`/Images/Icons/like.svg`} alt="" />
+                      <p>Thích</p>
+                    </div>
+
+                    <div className="postemotioncmt">
+                      <img src={`/Images/Icons/cmt.svg`} alt="" />
+                      <p>Bình luận</p>
+                    </div>
+
+                    <div className="postemotionshare">
+                      <img src={`/Images/Icons/share.svg`} alt="" />
+                      <p>Chia sẻ</p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>Chưa có bài viết nào.</p>
+            )}
+          </div>
+        </div>
+
+        <div className="HomeCenterPhai">
+          {/* <h1>HELLO</h1> */}
+
+          {isVisibleavatar && (
+            <div className="khungpicavata">
+              <div className="khungpicavatatren">
+                <div className="khungpicavatatrenavatar" onClick={handleClick}>
+                  <div className="khungpicavatatanh">
+                    <img
+                      src={"/Images/Icons/testa.jpg"}
+                      style={{ width: 38, height: 38, borderRadius: "50%" }}
+                    />
+                    <p>{user ? user.tennguoidung : "Đang tải..."}</p>
+                  </div>
+                </div>
+                <div className="khungpicavatatrentatcatrang">
+                  <button>Xem tất cả trang cá nhân</button>
+                </div>
+              </div>
+
+              <div className="khungpicavataduoi">
+                <ul>
+                  <li>
+                    <div className="coverkhungpicavataduoi">
+                      <img src={caidat} />
+                    </div>
+                    <p>Cài đặt và quyền riêng tư</p>
+                    <img src={arrowright} className="settingarrow" />
+                  </li>
+                  <li>
+                    <div className="coverkhungpicavataduoi">
+                      <img src={help} />
+                    </div>
+                    <p>Trợ giúp và hỗ trợ</p>
+                    <img src={arrowright} className="settingarrow" />
+                  </li>
+                  <li>
+                    <div className="coverkhungpicavataduoi">
+                      <img src={moon} />
+                    </div>
+                    <p>Màn hình & trợ năng</p>
+                    <img src={arrowright} className="settingarrow" />
+                  </li>
+                  <li>
+                    <div className="coverkhungpicavataduoi">
+                      <img src={mark} />
+                    </div>
+                    <div className="coverkhungpicavataduoip">
+                      <p>Đóng góp ý kiến</p>
+                      <p>CRT B</p>
+                    </div>
+                    {/* <p>Đóng góp ý kiến</p>                    */}
+                    {/* <p>CRT+B</p> */}
+                    <img src={arrowright} className="settingarrow" />
+                  </li>
+                  <li onClick={ClickSignOut}>
+                    <div className="coverkhungpicavataduoi">
+                      <img
+                        src={closeface}
+                        style={{ width: "18px", height: "18px" }}
+                      />
+                    </div>
+                    <p>Đăng xuất</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 
