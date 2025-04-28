@@ -36,7 +36,11 @@ html, body {
   }
   
   /* Logo & Search */
+<<<<<<< HEAD
   .nav-logo {
+=======
+  .nav-left img {
+>>>>>>> Hiu
     width: 32px;
     height: 32px;
     margin-right: 12px;
@@ -152,7 +156,10 @@ html, body {
   
   /* Profile info */
   .profile-info {
+<<<<<<< HEAD
     /* position: sticky; */
+=======
+>>>>>>> Hiu
     top: 56px;
     z-index: 800;
     margin-top: 80px;
@@ -178,6 +185,7 @@ html, body {
   }
   
   /* Posts */
+<<<<<<< HEAD
   .profile-posts {
     padding: 24px;
   }
@@ -190,6 +198,144 @@ html, body {
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
   }
 
+=======
+.creat-profile-posts {
+  border: 1px solid #ddd;
+
+  padding: 16px 24px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.new-posts {
+  display: flex;
+  align-items: center;
+}
+
+.new-posts .profile {
+  background: url('./images/avatar.jpg');
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.new-posts input {
+  background-color: #f0f2f5;
+  color: #000000;
+  width: 90%;
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: none;
+}
+
+  .profile-posts {
+    padding: 24px;
+  }
+  /* Post card */
+.post-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 16px auto;
+  max-width: 800px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* Header */
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+.post-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+.post-user-info {
+  flex: 1;
+}
+.post-meta {
+  font-size: 12px;
+  color: #65676b;
+  display: flex;
+  align-items: center;
+}
+.post-meta .timestamp {
+  margin-right: 6px;
+}
+.privacy-icon {
+  font-size: 12px;
+}
+.post-options {
+  color: #65676b;
+  cursor: pointer;
+}
+
+/* Content */
+.post-content {
+  padding: 12px;
+}
+.background-card {
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 24px;
+}
+
+.post-reactions {
+  padding: 0 12px;
+  font-size: 14px;
+  color: #65676b;
+}
+
+/* Actions */
+.post-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.post-actions span {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  cursor: pointer;
+  color: #65676b;
+}
+.post-actions span:hover {
+  background: #f0f2f5;
+}
+
+/* Comment box */
+.post-comment-box {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+}
+.comment-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+}
+.post-comment-box input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+}
+>>>>>>> Hiu
   .actions-menubar {
     display: flex;
     margin-top: 5px;
