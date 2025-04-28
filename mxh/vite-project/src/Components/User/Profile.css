@@ -36,11 +36,7 @@ html, body {
   }
   
   /* Logo & Search */
-<<<<<<< HEAD
-  .nav-logo {
-=======
   .nav-left img {
->>>>>>> Hiu
     width: 32px;
     height: 32px;
     margin-right: 12px;
@@ -156,10 +152,6 @@ html, body {
   
   /* Profile info */
   .profile-info {
-<<<<<<< HEAD
-    /* position: sticky; */
-=======
->>>>>>> Hiu
     top: 56px;
     z-index: 800;
     margin-top: 80px;
@@ -185,20 +177,6 @@ html, body {
   }
   
   /* Posts */
-<<<<<<< HEAD
-  .profile-posts {
-    padding: 24px;
-  }
-  .post-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  }
-
-=======
 .creat-profile-posts {
   border: 1px solid #ddd;
 
@@ -335,7 +313,6 @@ html, body {
   border: 1px solid #ddd;
   border-radius: 16px;
 }
->>>>>>> Hiu
   .actions-menubar {
     display: flex;
     margin-top: 5px;

@@ -3,12 +3,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import React from 'react';
 import './Profile.css';
 
-<<<<<<< HEAD
-const posts = [
-    { id: 1, content: 'Chào mọi người! Đây là bài đăng đầu tiên của mình.' },
-    { id: 2, content: 'Hôm nay trời đẹp, mình đi dạo công viên.' },
-];
-=======
 // Component hiển thị một bài viết đầy đủ như Facebook
 const Post = ({ post, currentUserAvatar }) => (
     <div className="post-card">
@@ -76,7 +70,6 @@ const Post = ({ post, currentUserAvatar }) => (
       othersLikeCount: 0,
     },
   ];
->>>>>>> Hiu
 
 const Profile = () => {
     const coverSrc = '/images/cover.jpg';
@@ -123,29 +116,6 @@ const Profile = () => {
                     <div className="profile-containerTop">
                         <div className="profile-header">
                             <div
-<<<<<<< HEAD
-                            className="cover-photo"
-                            style={{ backgroundImage: `url(${coverSrc})` }}
-                            aria-label="Ảnh bìa cá nhân"
-                            />
-                            <button className="edit-cover-btn">Chỉnh sửa ảnh bìa</button>
-                            <img className="avatar" src={avatarSrc} alt="Avatar cá nhân" />
-
-                        </div>
-                        <div className="profile-info">
-                        <h1>Nguyễn Văn A</h1>
-                        <p>Software Engineer | HCMC, Vietnam</p>
-                        <div className="info-details">
-                            <div><strong>Sinh nhật:</strong> 1/1/1990</div>
-                            <div><strong>Sống tại:</strong> Thành phố Hồ Chí Minh</div>
-                            <div><strong>Công việc:</strong> Công ty XYZ</div>
-                        </div>
-                    </div>
-                        <div>
-                            
-                        </div>
-
-=======
                                 className="cover-photo"
                                 style={{ backgroundImage: `url(${coverSrc})` }}
                                 aria-label="Ảnh bìa cá nhân"
@@ -162,7 +132,6 @@ const Profile = () => {
                                 <div><strong>Công việc:</strong> Công ty XYZ</div>
                             </div>
                         </div>
->>>>>>> Hiu
                         <div className="actions-menubar">
                             <a href="#" className="active">Bài viết</a>
                             <a href="#">Bạn bè</a>
@@ -173,16 +142,6 @@ const Profile = () => {
                 </div>
 
                 <div className="profile-container">
-<<<<<<< HEAD
-
-
-                    <div className="profile-posts">
-                        {posts.map(post => (
-                            <div key={post.id} className="post-card">
-                                <p>{post.content}</p>
-                            </div>
-                        ))}
-=======
                     <div className="creat-profile-posts">
                         <div className="new-posts">
                             <span className="profile"></span>
@@ -194,7 +153,6 @@ const Profile = () => {
                     {posts.map(post => (
           <Post key={post.id} post={post} currentUserAvatar={avatarSrc} />
         ))}
->>>>>>> Hiu
                     </div>
                 </div>
             </div>
