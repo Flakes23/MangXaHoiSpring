@@ -15,54 +15,80 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.cors.CorsConfigurationSource;
+
+import java.util.Arrays;
+
 @Configuration
 @EnableWebSecurity
 public class WebConfig {
+
     @Autowired
     private UserDetailsService userDetailsService;
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
     private final LogoutSuccessHandler logoutSuccessHandler;
 
     public WebConfig(UserDetailsService userDetailsService, AuthenticationSuccessHandler authenticationSuccessHandler,
-            LogoutSuccessHandler logoutSuccessHandler) {
+                     LogoutSuccessHandler logoutSuccessHandler) {
         this.userDetailsService = userDetailsService;
         this.authenticationSuccessHandler = authenticationSuccessHandler;
         this.logoutSuccessHandler = logoutSuccessHandler;
     }
 
-    // mã hóa password
+    // Mã hóa password
     @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // Cấu hình CORS
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:8080"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);  // Cho phép gửi cookie
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //cho phep nhung duong dan khong can dang nhap
-        http.csrf((csrf) -> csrf.disable()).authorizeHttpRequests((authorize) -> authorize.requestMatchers("/register", "/js/User/Account/**", "/js/**","css/**", "/confirmUser", "/Confirm", "/api/register", "/api/confirmUser").permitAll()
-        //cac duong dan con lai can phai dang nhap
-        .anyRequest().authenticated())
-        //phuong thuc login
-                .formLogin(login -> login.loginPage("/login")
-                                         .loginProcessingUrl("/login")
-                                         .successHandler(authenticationSuccessHandler)
-                                         .permitAll())
-                // phuong thuc logout
-                .logout(logout -> logout
-                        .logoutRequestMatcher(
-                                new AntPathRequestMatcher("/logout", "POST"))
-                        .logoutSuccessHandler(logoutSuccessHandler)
-                        .permitAll().deleteCookies("auth_code", "JSESSIONID")
-                        .invalidateHttpSession(true));
+        http
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(authz -> authz
+                .requestMatchers(
+                    "/register", "/js/User/Account/**", "/js/**","css/**", 
+                    "/confirmUser", "/Confirm", "/api/register", "/api/confirmUser", "/api/login"
+                ).permitAll()
+                .anyRequest().authenticated()
+            )
+            .formLogin(login -> login
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .successHandler(authenticationSuccessHandler)
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST"))
+                .logoutSuccessHandler(logoutSuccessHandler)
+                .permitAll()
+                .deleteCookies("auth_code", "JSESSIONID")
+                .invalidateHttpSession(true)
+            );
         return http.build();
     }
 
-    // luu thong tin dang nhap
+    // Lưu thông tin đăng nhập
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService)
+            .passwordEncoder(passwordEncoder());
         System.out.println(userDetailsService.toString() + " auth");
     }
 }

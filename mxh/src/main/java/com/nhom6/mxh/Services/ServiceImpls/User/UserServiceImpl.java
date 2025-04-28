@@ -63,6 +63,29 @@ public class UserServiceImpl implements UserService {
             throw new CustomException(ErrorCode.DATABASE_ACCESS_ERROR);
         }
     }
+    
+    @Override
+    public User login(String email, String rawPassword) {
+        try {
+            log.info("Login attempt for email: {}", email);
+            User user = userRepository.findByEmail(email);
+            if (user == null) {
+                log.error("User not found for email: {}", email);
+                throw new CustomException(ErrorCode.USER_NOT_FOUND);
+            }
+
+            // So sánh password mã hóa
+            if (!passwordEncoder.matches(rawPassword, user.getPassword())) {
+                log.error("Invalid password for email: {}", email);
+                throw new CustomException(ErrorCode.USER_NOT_FOUND);
+            }
+
+            return user;
+        } catch (DataAccessException e) {
+            log.error("Database access error during login for email: {}", email);
+            throw new CustomException(ErrorCode.DATABASE_ACCESS_ERROR);
+        }
+    }
 
     @Override
     public User findByEmail(String email) {

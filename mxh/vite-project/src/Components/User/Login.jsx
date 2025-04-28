@@ -1,7 +1,7 @@
 import { useState } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Login.css"
-import { SignIn } from "../ApiFunctions";
+import { SignIn } from "../../api/UserAPI";
 import { useNavigate } from "react-router-dom"
 
 function Login() {
@@ -17,14 +17,12 @@ function Login() {
 
     try {
       const success = await SignIn(taikhoan, matkhau)
-
+      console.log(success) // In ra dữ liệu trả về từ server
       if (success) {
         navigate("/tc")
-      } else {
-        setError("Tài khoản hoặc mật khẩu không đúng.")
       }
     } catch (error) {
-      setError("Có lỗi trong quá trình đăng nhập. Vui lòng thử lại.")
+      setError("Tài khoản hoặc mật khẩu không đúng.")
     } finally {
       setLoading(false)
     }
@@ -54,7 +52,7 @@ function Login() {
             <p>Vui lòng nhập thông tin đăng nhập của bạn</p>
           </div>
 
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleLogin}  method="POST" id="formLogin">
             <div className="form-group">
               <label htmlFor="username">Tài khoản</label>
               <div className="input-with-icon">

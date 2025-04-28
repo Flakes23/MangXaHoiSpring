@@ -4,6 +4,7 @@ import Login from './Components/User/Login';
 import Home from './Components/Home/Home';
 import Trangchu from './Components/Home/Trangchu'
 import Profile from './Components/User/Profile';
+import Register from './Components/User/Register';
 import "./App.css"
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/tc" element={<Trangchu />} />
         <Route path="/pf" element={<Profile />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );

@@ -12,6 +12,7 @@ public interface UserService {
     User findById(long userId);
     User findByUserWithUserAbouts(Long id);
     void saveUser(User user);
+    User login(String email, String rawPassword);
     User findByEmail(String email);
     boolean isEmailExist(String email);
     void setIsOnline(User user);

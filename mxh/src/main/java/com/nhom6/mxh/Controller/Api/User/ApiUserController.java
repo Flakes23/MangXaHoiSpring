@@ -96,8 +96,7 @@ public class ApiUserController {
 
     @Autowired
     private RelationshipService relationshipService;
-
-
+    
     @GetMapping("/api/confirmUser")
     public ResponseEntity<?> confirmUser(@RequestParam("token") long token, Model model) { // @RequestParam lấy giá trị từ url (lấy giá trị
                                                                        // của token từ url
@@ -106,6 +105,27 @@ public class ApiUserController {
             verifycationTokenService.confirmUser(token);
             return ResponseEntity.ok().build();
     }
+    
+    @PostMapping("/api/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String password = request.get("password");
+        System.out.println(request);
+
+        // Kiểm tra xem email và mật khẩu có hợp lệ không
+        User user = userService.login(email, password);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse(false, "Email or password is incorrect"));
+        }
+
+        // Trả về thông tin người dùng nếu đăng nhập thành công
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Login successful");
+        response.put("user", user);
+
+        return ResponseEntity.ok(response);
+    }
+
 
     @PostMapping("/api/usercurrent")
     public ResponseEntity<?> userCurrent(@RequestParam String taikhoan, @RequestParam String matkhau) {
