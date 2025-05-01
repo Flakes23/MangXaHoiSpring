@@ -204,7 +204,7 @@ html, body, #root {
     align-items: center;
     margin-bottom: 10px;
 }
-.post-header .avatar {
+.post-header .avatarhomewriter {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -579,28 +579,41 @@ height: 50px;
 }
 .modaladdpost{
     width: 470px;
-    height: 70px;
+    height: 50px;
     border-radius: 5px;
     background: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-left: 16px;
     /* margin-top: 10px; */
+    display: flex;
 }
-
+.modaladdpostcover .modalpostmenu ul{
+    display: flex;
+    list-style: none;
+}
+.modaladdpostcover .modalpostmenu{
+    margin-left: 30px;
+}
+.modaladdpostcover .modalpostmenu li{
+    margin-top: 10px;
+    margin-right: 10px;
+}
 .modaladdpostcover .modaladdpost p{
-    margin:0;
+    margin-left: 10px;
+    margin-top: 10px;
+    /* margin:0; */
 }
 
 .modalbamdangcover{
-    height: 70px;
+    height: 50px;
     background: white;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 .modalbamdangcover button{
-    margin-top: 20px;
-    width: 444px;
+    /* margin-top: 20px; */
+    width: 470px;
     height: 36px;
     background-color: blue;
     padding: 0;
@@ -748,4 +761,65 @@ height: 50px;
     height: 100px;
     background-color: red;
     
+}
+
+.modalprivacy{
+    width: 503px;
+    height: 500px;
+    /* background-color: red; */
+    background-color: white;
+    position: relative;
+    z-index: 3;
+    border-radius: 10px;
+    overflow: hidden;
+    max-height: 80vh;
+    overflow-y: auto;
+    transition: max-height 0.3s ease-in-out;
+}
+.modalprivacy .modalintroduce .modalintroducetitleup .titleup1{
+    margin-top: 15px;
+    margin-left: 16px;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+.modalprivacy .modalintroduce .modalintroducetitleup .titleup2{
+    margin-left: 15px;
+    margin-bottom: 0;
+    color: #84878b;
+
+}
+.modalprivacy .modalintroduce .modalintroducetitleup .titleup3{
+    margin-left: 15px;
+    margin-bottom: 0;
+    color: #84878b;
+
+}
+.modalprivacy .modalintroduce .modalintroducetitledown{
+    margin-top: 15px;
+    margin-left: 15px;
+    color: #84878b;
+
+}
+.modalprivacy .modalintroduce .modalintroducetitledown .modalintroducetitledowncover{
+    display: flex;
+    margin-bottom: 0;
+    height: 20px;
+}
+.modalprivacy .modalintroduce .modalintroducetitledown .titledowntmp{
+    margin: 0;
+    font-weight: 600;
+    color: #84878b;
+}
+.modalprivacy .modalintroduce .modalintroducetitledown .titledown1{
+    margin-bottom: 0;
+    color: #84878b;
+}
+.modalmenuprivate .menuprivateleft .menuprivateicon{
+    margin-top: 6px;
+    margin-left: 9px;
+    width: 36px;
+    height: 36px;
+    line-height: 20px;
+    border-radius: 50%;
+    background-color: #e2e5e9;
 }
