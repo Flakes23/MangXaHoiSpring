@@ -26,6 +26,10 @@ import mark from "/Images/Icons/mark.svg";
 import closeface from "/Images/Icons/enter.png";
 import upicon from "/Images/Icons/tanh.png";
 import friendicon from "/Images/Icons/ngdung.png";
+import earthicon from "../../assets/images/earth.svg";
+import fricon from "../../assets/images/friendicon.svg";
+import lock from "../../assets/images/lockicon.svg";
+import arrowleft from "../../assets/images/arrowleft.svg";
 
 import axios from "axios";
 function Trangchu() {
@@ -179,6 +183,15 @@ function Trangchu() {
           ></div>
           <div className="modalprivacy">
             <div className="modal-title">
+              <div
+                className="modaltitleback"
+                onClick={() => {
+                  setHienModal(true);
+                  setshowprivacyhome(false);
+                }}
+              >
+                <img src={arrowleft} alt="" />
+              </div>
               <p>Đối tượng của bài viết</p>
             </div>
             <div className="modalintroduce">
@@ -192,7 +205,7 @@ function Trangchu() {
               <div className="modalintroducetitledown">
                 <div className="modalintroducetitledowncover">
                   <p className="titledown1">Tuy đối tượng mặc định là</p>
-                  <p className="titledowntmp">&nbsp;Chỉ mình tôi</p>
+                  <p className="titledowntmp">&nbsp;Công khai</p>
                   <p>, nhưng bạn có thể thay đổi</p>
                 </div>
                 <p className="titledown2">đối tượng của riêng bài viết này.</p>
@@ -202,16 +215,69 @@ function Trangchu() {
               <ul>
                 <li>
                   <div className="menuprivateleft">
-                      <div className="menuprivateicon">
-                        
-                      </div>
+                    <div className="menuprivateicons">
+                      <img src={earthicon} alt="" className="menuprivateicon" />
+                    </div>
                   </div>
+                  <div className="menuprivatewrite">
+                    <p className="menuprivatewriteup">Công khai</p>
+                    <p className="menuprivatewritedown">
+                      Bất kỳ ai ở trên hoặc ngoài Facebook
+                    </p>
+                  </div>
+                  <label className="menuprivatetick">
+                    {/* <div classname="menuprivatetick"> */}
+                    <input type="radio" />
+                    {/* </div> */}
+                  </label>
                 </li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>
+                  <div className="menuprivateleft">
+                    <div className="menuprivateicons">
+                      <img src={fricon} alt="" className="menuprivateicon" />
+                    </div>
+                  </div>
+                  <div className="menuprivatewrite">
+                    <p className="menuprivatewriteup">Bạn bè</p>
+                    <p className="menuprivatewritedown">
+                      Bạn bè của bạn trên facebook
+                    </p>
+                  </div>
+                  <label className="menuprivatetick">
+                    <input type="radio" name="privacy" />
+                  </label>
+                </li>
+                <li>
+                  <div className="menuprivateleft">
+                    <div className="menuprivateicons">
+                      <img src={lock} alt="" className="menuprivateicon" />
+                    </div>
+                  </div>
+                  <div className="menuprivatewrite">
+                    <p className="menuprivatewriteup">Chỉ mình tôi</p>
+                    <p className="menuprivatewritedown">
+                      Bất kỳ ai ở trên hoặc ngoài Facebook
+                    </p>
+                  </div>
+                  <label className="menuprivatetick">
+                    <input type="radio" name="privacy" />
+                  </label>
+                </li>
               </ul>
+            </div>
+            <div className="modalmenuprivatebutton">
+              <div className="buttonhuy"  onClick={() => {
+                  setHienModal(true);
+                  setshowprivacyhome(false);
+                }}>
+                <p>Hủy</p>
+              </div>
+              <div className="buttonfinish"  onClick={() => {
+                  setHienModal(true);
+                  setshowprivacyhome(false);
+                }}>
+                <button>Xong</button>
+              </div>
             </div>
           </div>
         </div>
