@@ -1,35 +1,36 @@
 import "./TrangChu.css";
-import face from "/Images/Icons/face.png";
-import kinh from "/Images/Icons/kinh.svg";
-import home from "/Images/Icons/home.svg";
-import video from "/Images/Icons/video.svg";
-import market from "/Images/Icons/market.svg";
-import group from "/Images/Icons/group.svg";
-import game from "/Images/Icons/game.svg";
-import menu from "/Images/Icons/menu.svg";
-import mess from "/Images/Icons/mess.svg";
-import bell from "/Images/Icons/bell.svg";
+// import testa from "../../assets/public/images/Icons/testa.jpg";
+import face from "../../assets/public/images/Icons/face.png";
+import kinh from "../../assets/public/images/Icons/kinh.svg";
+import home from "../../assets/public/images/Icons/home.svg";
+import video from "../../assets/public/images/Icons/video.svg";
+import market from "../../assets/public/images/Icons/market.svg";
+import group from "../../assets/public/images/Icons/group.svg";
+import game from "../../assets/public/images/Icons/game.svg";
+import menu from "../../assets/public/images/Icons/menu.svg";
+import mess from "../../assets/public/images/Icons/mess.svg";
+import bell from "../../assets/public/images/Icons/bell.svg";
 
-import testa from "/Images/Icons/testa.jpg";
-import picarrow from "/Images/Icons/picarrow.svg";
-import videoo from "/Images/Icons/video.png";
-import abum from "/Images/Icons/abum.png";
-import camxuc from "/Images/Icons/camxuc.png";
-import feed from "/Images/Icons/feed.png";
+import testa from "../../assets/public/images/Icons/testa.jpg";
+import picarrow from "../../assets/public/images/Icons/picarrow.svg";
+import videoo from "../../assets/public/images/Icons/video.png";
+import abum from "../../assets/public/images/Icons/abum.png";
+import camxuc from "../../assets/public/images/Icons/camxuc.png";
+import feed from "../../assets/public/images/Icons/feed.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import caidat from "/Images/Icons/caidat.svg";
-import arrowright from "/Images/Icons/arrowright.svg";
-import help from "/Images/Icons/help.svg";
-import moon from "/Images/Icons/moon.svg";
-import mark from "/Images/Icons/mark.svg";
-import closeface from "/Images/Icons/enter.png";
-import upicon from "/Images/Icons/tanh.png";
-import friendicon from "/Images/Icons/ngdung.png";
-import earthicon from "../../assets/images/earth.svg";
-import fricon from "../../assets/images/friendicon.svg";
-import lock from "../../assets/images/lockicon.svg";
-import arrowleft from "../../assets/images/arrowleft.svg";
+import caidat from "../../assets/public/images/Icons/caidat.svg";
+import arrowright from "../../assets/public/images/Icons/arrowright.svg";
+import help from "../../assets/public/images/Icons/help.svg";
+import moon from "../../assets/public/images/Icons/moon.svg";
+import mark from "../../assets/public/images/Icons/mark.svg";
+import closeface from "../../assets/public/images/Icons/enter.png";
+import upicon from "../../assets/public/images/Icons/tanh.png";
+import friendicon from "../../assets/public/images/Icons/ngdung.png";
+import earthicon from "../../assets/public/images/Icons/earth.svg";
+import fricon from "../../assets/public/images/Icons/friendicon.svg";
+import lock from "../../assets/public/images/Icons/lockicon.svg";
+import arrowleft from "../../assets/public/images/Icons/arrowleft.svg";
 
 import axios from "axios";
 function Trangchu() {
@@ -179,7 +180,10 @@ function Trangchu() {
         <div className="modal">
           <div
             className="modal_overlay"
-            onClick={() => setHienModal(false)}
+            onClick={() => {
+              setHienModal(false); // đóng modal hiện tại
+              setshowprivacyhome(false); // mở modal mới
+            }}
           ></div>
           <div className="modalprivacy">
             <div className="modal-title">
