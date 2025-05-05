@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from './Components/User/Login';
-import Home from './Components/Home/Home';
 import Trangchu from './Components/Home/Trangchu'
 import Profile from './Components/User/Profile';
+import AddFriend from './Components/User/AddFriend';
 import "./App.css"
 
 function App() {
@@ -14,7 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/tc" element={<Trangchu />} />
-        <Route path="/pf" element={<Profile />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/addfriend" element={<AddFriend />} />
       </Routes>
     </Router>
   );

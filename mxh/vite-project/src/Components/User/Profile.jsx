@@ -2,8 +2,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import React from 'react';
 import './Profile.css';
+import Navbar from '../impl/Navbar';
+import cover from "../../assets/public/images/cover.jpg";
+import avatar from "../../assets/public/images/avatar.jpg";
 
 // Component hiển thị một bài viết đầy đủ như Facebook
+const hienkhunganh = () => {
+  setIsVisibleavatar(!isVisibleavatar);
+};
 const Post = ({ post, currentUserAvatar }) => (
     <div className="post-card">
       <div className="post-header">
@@ -50,7 +56,7 @@ const Post = ({ post, currentUserAvatar }) => (
     {
       id: 1,
       name: 'Nguyễn Văn A',
-      avatar: '/images/avatar.jpg',
+      avatar: avatar,
       date: '21 tháng 2',
       privacyIcon: 'fa-globe-americas',
       backgroundColor: '#d500f9',
@@ -61,7 +67,7 @@ const Post = ({ post, currentUserAvatar }) => (
     {
       id: 2,
       name: 'Nguyễn Văn A',
-      avatar: '/images/avatar.jpg',
+      avatar: avatar,
       date: '22 tháng 2',
       privacyIcon: 'fa-user-friends',
       backgroundColor: null,
@@ -72,46 +78,13 @@ const Post = ({ post, currentUserAvatar }) => (
   ];
 
 const Profile = () => {
-    const coverSrc = '/images/cover.jpg';
-    const avatarSrc = '/images/avatar.jpg';
+    const coverSrc = cover;
+    const avatarSrc = avatar;
 
     return (
         <>
             <div className="app-root">
-                <header className="fb-navbar">
-                    <div>
-                        <nav>
-                            <div className="nav-left">
-                                <img src="./images/logo.png" alt="Logo" />
-                                <input type="text" placeholder="Tìm Kiếm..." />
-                            </div>
-                            <div className="nav-middle">
-                                <a href="#">
-                                    <i className="fa-solid fa-home"></i>
-                                </a>
-                                <a href="#">
-                                    <i className="fa-solid fa-user-friends"></i>
-                                </a>
-                                <a href="#">
-                                    <i className="fa-solid fa-play-circle"></i>
-                                </a>
-                                <a href="#">
-                                    <i className="fa-solid fa-users"></i>
-                                </a>
-                            </div>
-                            <div className="nav-right">
-                                <a href="#">
-                                    <i className="fas fa-ellipsis-h"></i>
-                                </a>
-                                <a href="#">
-                                    <i className="fas fa-bell"></i>
-                                </a>
-                                <span className="profile"></span>
-                            </div>
-                        </nav>
-                    </div>
-                </header>
-
+                <Navbar />
                 <div className="profile-bgTop">
                     <div className="profile-containerTop">
                         <div className="profile-header">

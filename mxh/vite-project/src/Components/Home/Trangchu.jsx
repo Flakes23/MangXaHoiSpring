@@ -1,33 +1,37 @@
 import "./TrangChu.css";
-import face from "/Images/Icons/face.png";
-import kinh from "/Images/Icons/kinh.svg";
-import home from "/Images/Icons/home.svg";
-import video from "/Images/Icons/video.svg";
-import market from "/Images/Icons/market.svg";
-import group from "/Images/Icons/group.svg";
-import game from "/Images/Icons/game.svg";
-import menu from "/Images/Icons/menu.svg";
-import mess from "/Images/Icons/mess.svg";
-import bell from "/Images/Icons/bell.svg";
+import face from "../../assets/public/images/Icons/face.png"
+import kinh from "../../assets/public/images/Icons/kinh.svg";
+import home from "../../assets/public/images/Icons/home.svg";
+import video from "../../assets/public/images/Icons/video.svg";
+import market from "../../assets/public/images/Icons/market.svg";
+import group from "../../assets/public/images/Icons/group.svg";
+import game from "../../assets/public/images/Icons/game.svg";
+import menu from "../../assets/public/images/Icons/menu.svg";
+import mess from "../../assets/public/images/Icons/mess.svg";
+import bell from "../../assets/public/images/Icons/bell.svg";
+import Navbar from "../impl/Navbar";
 
-import testa from "/Images/Icons/testa.jpg";
-import picarrow from "/Images/Icons/picarrow.svg";
-import videoo from "/Images/Icons/video.png";
-import abum from "/Images/Icons/abum.png";
-import camxuc from "/Images/Icons/camxuc.png";
-import feed from "/Images/Icons/feed.png";
+import testa from "../../assets/public/images/Icons/testa.jpg";
+import picarrow from "../../assets/public/images/Icons/picarrow.svg";
+import videoo from "../../assets/public/images/Icons/video.png";
+import abum from "../../assets/public/images/Icons/abum.png";
+import camxuc from "../../assets/public/images/Icons/camxuc.png";
+import feed from "../../assets/public/images/Icons/feed.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import caidat from "/Images/Icons/caidat.svg";
-import arrowright from "/Images/Icons/arrowright.svg";
-import help from "/Images/Icons/help.svg";
-import moon from "/Images/Icons/moon.svg";
-import mark from "/Images/Icons/mark.svg";
-import closeface from "/Images/Icons/enter.png";
+import caidat from "../../assets/public/images/Icons/caidat.svg";
+import arrowright from "../../assets/public/images/Icons/arrowright.svg";
+import help from "../../assets/public/images/Icons/help.svg";
+import moon from "../../assets/public/images/Icons/moon.svg";
+import mark from "../../assets/public/images/Icons/mark.svg";
+import closeface from "../../assets/public/images/Icons/enter.png";
 function Trangchu() {
   const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/trangcanhan");
+  const handleClickProfile = () => {
+    navigate("/profile");
+  };
+  const handleClickFriend = () => {
+    navigate("/addfriend");
   };
   const ClickSignOut = () => {
     navigate("/Facebook.com");
@@ -233,6 +237,8 @@ function Trangchu() {
   // };
 
   return (
+    <>
+    <Navbar />
     <div className="HomeCenterGiuaFromDang">
       {hienModal && (
         <div className="modal">
@@ -258,7 +264,7 @@ function Trangchu() {
               <div className="modalinforuseahaichucnang">
                 <p>{user ? user.tennguoidung : "Đang tải..."}</p>
                 <button className="cong-khai-btn">
-                  <img src={`/Images/Icons/earth.svg`} alt="" />
+                  <img src={`../../assets/public/images/Icons/earth.svg`} alt="" />
                   Công khai
                   <span className="dropdown-arrow">▼</span>
                 </button>
@@ -312,79 +318,18 @@ function Trangchu() {
         </div>
       </div>
     )}; */}
-      <div className="Homebanner">
-        <div className="search-container">
-          <img src={face} alt="Facebook Logo" className="logo" />
-          <div className="search-box">
-            <i>
-              <img
-                src={kinh}
-                style={{ width: "15px", height: "15px", fill: "blue" }}
-              />
-            </i>
-            <input type="text" placeholder="Tìm kiếm trên Facebook" />
-          </div>
-        </div>
-
-        <div className="Bannercenter">
-          <ul>
-            <li>
-              <img src={home} />
-            </li>
-            <li>
-              <img src={video} />
-            </li>
-            <li>
-              <img src={market} />
-            </li>
-            <li>
-              <img src={group} />
-            </li>
-            <li>
-              <img src={game} />
-            </li>
-          </ul>
-        </div>
-
-        <div className="Bannerright">
-          <ul>
-            <li>
-              <img src={"/Images/Icons/menu.svg"} />
-            </li>
-            <li>
-              <img src={mess} />
-            </li>
-            <li>
-              <img src={bell} />
-            </li>
-            {/* <li>
-            <img src={testa} />
-            </li> */}
-          </ul>
-          <div className="Bannerrightanh">
-            <img
-              src={"/Images/Icons/testa.jpg"}
-              className="picavata"
-              onClick={hienkhunganh}
-            />
-            <div className="Bannerrightanhduoi">
-              <img src={picarrow} className="picavatedown" />
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="HomeCenter">
         <div className="HomeCenterTrai">
           <div className="HomeCenterTraiTren">
             <ul>
-              <li className="liavatar" onClick={handleClick}>
+              <li className="liavatar" onClick={handleClickProfile}>
                 <div className="centraiavatar">
-                  <img src={"/Images/Icons/testa.jpg"} />
+                  <img src={testa} />
                 </div>
                 {/* <p>Trọng Tấn Dương</p> */}
                 <p>{user ? user.tennguoidung : "Đang tải..."}</p>
               </li>
-              <li>
+              <li onClick={handleClickFriend}>
                 <div className="menu1"></div>
                 <p>Bạn bè</p>
               </li>
@@ -429,7 +374,7 @@ function Trangchu() {
         <div className="HomeCenterGiua">
           <div className="post-box">
             <div className="post-header">
-              <img src={"/Images/Icons/testa.jpg"} className="avatar" />
+              <img src={"../../assets/public/images/Icons/testa.jpg"} className="avatar" />
               <input
                 type="text"
                 className="input-box"
@@ -490,7 +435,7 @@ function Trangchu() {
                     </div>
                     <div className="postitemore">
                       <img
-                        src={`/Images/Icons/more.svg`}
+                        src={`../../assets/public/images/Icons/more.svg`}
                         alt=""
                         onClick={() => setHienTest(true)}
                       />
@@ -512,17 +457,17 @@ function Trangchu() {
 
                   <div className="postemotion">
                     <div className="postemotionlike">
-                      <img src={`/Images/Icons/like.svg`} alt="" />
+                      <img src={`../../assets/public/images/Icons/like.svg`} alt="" />
                       <p>Thích</p>
                     </div>
 
                     <div className="postemotioncmt">
-                      <img src={`/Images/Icons/cmt.svg`} alt="" />
+                      <img src={`../../assets/public/images/Icons/cmt.svg`} alt="" />
                       <p>Bình luận</p>
                     </div>
 
                     <div className="postemotionshare">
-                      <img src={`/Images/Icons/share.svg`} alt="" />
+                      <img src={`../../assets/public/images/Icons/share.svg`} alt="" />
                       <p>Chia sẻ</p>
                     </div>
                   </div>
@@ -540,10 +485,10 @@ function Trangchu() {
           {isVisibleavatar && (
             <div className="khungpicavata">
               <div className="khungpicavatatren">
-                <div className="khungpicavatatrenavatar" onClick={handleClick}>
+                <div className="khungpicavatatrenavatar" onClick={handleClickProfile}>
                   <div className="khungpicavatatanh">
                     <img
-                      src={"/Images/Icons/testa.jpg"}
+                      src={"../../assets/public/images/Icons/testa.jpg"}
                       style={{ width: 38, height: 38, borderRadius: "50%" }}
                     />
                     <p>{user ? user.tennguoidung : "Đang tải..."}</p>
@@ -605,6 +550,7 @@ function Trangchu() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

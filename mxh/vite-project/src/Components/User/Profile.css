@@ -12,43 +12,17 @@ html, body {
 }
 
 /* Navbar cố định */
-.fb-navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: #ffffff;
-    box-shadow:0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  .fb-navbar nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 56px;
-    padding: 0 16px;
-  }
-  
-  .nav-left, .nav-middle, .nav-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Logo & Search */
-  .nav-left img {
-    width: 32px;
-    height: 32px;
-    margin-right: 12px;
-  }
-  .nav-left input {
-    background-color: #f0f2f5;
-    color: #000000;
-    width: 200px;
-    padding: 6px 12px;
-    border-radius: 16px;
-    border: none;
-    margin-left: 12px;
+  .Homebanner{
+    background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 56px;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  top:0;
+  left:0;
+  right: 0;
+  z-index: 1000;
   }
   
   /* Middle icons */
