@@ -1,37 +1,41 @@
 import "./TrangChu.css";
-import face from "../../assets/public/images/Icons/face.png"
-import kinh from "../../assets/public/images/Icons/kinh.svg";
-import home from "../../assets/public/images/Icons/home.svg";
-import video from "../../assets/public/images/Icons/video.svg";
-import market from "../../assets/public/images/Icons/market.svg";
-import group from "../../assets/public/images/Icons/group.svg";
-import game from "../../assets/public/images/Icons/game.svg";
-import menu from "../../assets/public/images/Icons/menu.svg";
-import mess from "../../assets/public/images/Icons/mess.svg";
-import bell from "../../assets/public/images/Icons/bell.svg";
-import Navbar from "../impl/Navbar";
+import face from "/Images/Icons/face.png";
+import kinh from "/Images/Icons/kinh.svg";
+import home from "/Images/Icons/home.svg";
+import video from "/Images/Icons/video.svg";
+import market from "/Images/Icons/market.svg";
+import group from "/Images/Icons/group.svg";
+import game from "/Images/Icons/game.svg";
+import menu from "/Images/Icons/menu.svg";
+import mess from "/Images/Icons/mess.svg";
+import bell from "/Images/Icons/bell.svg";
 
-import testa from "../../assets/public/images/Icons/testa.jpg";
-import picarrow from "../../assets/public/images/Icons/picarrow.svg";
-import videoo from "../../assets/public/images/Icons/video.png";
-import abum from "../../assets/public/images/Icons/abum.png";
-import camxuc from "../../assets/public/images/Icons/camxuc.png";
-import feed from "../../assets/public/images/Icons/feed.png";
+import testa from "/Images/Icons/testa.jpg";
+import picarrow from "/Images/Icons/picarrow.svg";
+import videoo from "/Images/Icons/video.png";
+import abum from "/Images/Icons/abum.png";
+import camxuc from "/Images/Icons/camxuc.png";
+import feed from "/Images/Icons/feed.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import caidat from "../../assets/public/images/Icons/caidat.svg";
-import arrowright from "../../assets/public/images/Icons/arrowright.svg";
-import help from "../../assets/public/images/Icons/help.svg";
-import moon from "../../assets/public/images/Icons/moon.svg";
-import mark from "../../assets/public/images/Icons/mark.svg";
-import closeface from "../../assets/public/images/Icons/enter.png";
+import caidat from "/Images/Icons/caidat.svg";
+import arrowright from "/Images/Icons/arrowright.svg";
+import help from "/Images/Icons/help.svg";
+import moon from "/Images/Icons/moon.svg";
+import mark from "/Images/Icons/mark.svg";
+import closeface from "/Images/Icons/enter.png";
+import upicon from "/Images/Icons/tanh.png";
+import friendicon from "/Images/Icons/ngdung.png";
+import earthicon from "../../assets/images/earth.svg";
+import fricon from "../../assets/images/friendicon.svg";
+import lock from "../../assets/images/lockicon.svg";
+import arrowleft from "../../assets/images/arrowleft.svg";
+
+import axios from "axios";
 function Trangchu() {
   const navigate = useNavigate();
-  const handleClickProfile = () => {
-    navigate("/profile");
-  };
-  const handleClickFriend = () => {
-    navigate("/addfriend");
+  const handleClick = () => {
+    navigate("/trangcanhan");
   };
   const ClickSignOut = () => {
     navigate("/Facebook.com");
@@ -64,54 +68,22 @@ function Trangchu() {
     setIsVisiblebaidang(!isVisiblebaidang);
   };
 
+  const [isVisibleprivacy, setIsVisibleprivacy] = useState(false);
+  const showprivacy = () => {
+    // setIsVisiblebaidang(isVisibleprivacy);
+    setIsVisibleprivacy(!isVisibleprivacy);
+  };
+
   // const [showForm, setShowForm] = useState(false);
   const [hienModal, setHienModal] = useState(false);
   const [hienTest, setHienTest] = useState(false);
+  const [showprivacyhome, setshowprivacyhome] = useState(false);
 
   const [noidung, setNoidung] = useState("");
   const [dsBaiViet, setDsBaiViet] = useState([]);
-  useEffect(() => {
-    // Gọi API lấy danh sách bài viết từ database
-    fetch("/poststhu")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Dữ liệu bài viết:", data);
-        setDsBaiViet(data);
-      })
-      .catch((error) => console.error("Lỗi khi lấy bài viết:", error));
-  }, []);
-  // useEffect(() => {
-  //   fetch("/poststhu")
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error('Mã trạng thái HTTP không hợp lệ');
-  //       }
-  //       return response.json();  // Phân tích JSON từ phản hồi
-  //     })
-  //     .then((data) => {
-  //       console.log("Dữ liệu bài viết:", data);
-  //       setDsBaiViet(data);  // Cập nhật state với dữ liệu bài viết
-  //     })
-  //     .catch((error) => console.error("Lỗi khi lấy bài viết:", error));
-  // }, []);
-  
-  
-  
-  
-  
-  // useEffect(() => {
-  //   fetch("http://localhost:8080/posts") // <-- đổi thành /posts
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("Dữ liệu bài viết:", data);
-  //       setDsBaiViet(data);
-  //     })
-  //     .catch((error) => console.error("Lỗi khi lấy bài viết:", error));
-  // }, []);
-
   // useEffect(() => {
   //   // Gọi API lấy danh sách bài viết từ database
-  //   fetch("http://localhost:8080/uploadpostuser")
+  //   fetch("/poststhu")
   //     .then((response) => response.json())
   //     .then((data) => {
   //       console.log("Dữ liệu bài viết:", data);
@@ -119,53 +91,18 @@ function Trangchu() {
   //     })
   //     .catch((error) => console.error("Lỗi khi lấy bài viết:", error));
   // }, []);
-  //   const handleDangBai = async () => {
-  //     const formData = new FormData();
-  //     formData.append("tennguoidung", user.tennguoidung);
-  //     formData.append("noidung", noidung);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/post"); // nhớ đúng URL backend bạn nhé
+        setDsBaiViet(response.data.posts); // response.data.posts là mảng bài viết
+      } catch (error) {
+        console.error("Lỗi khi lấy danh sách bài viết:", error);
+      }
+    };
 
-  //     // Nếu có URL của ảnh, chỉ gửi URL đó thay vì gửi file
-  //     if (anhDaTai) {
-  //         formData.append("image", anhDaTai);  // Gửi URL ảnh vào backend
-  //     }
-
-  //     try {
-  //         const response = await fetch("http://localhost:8080/api/baiviet/upload", {
-  //             method: "POST",
-  //             body: formData,
-  //         });
-
-  //         if (!response.ok) {
-  //             throw new Error("Đã xảy ra lỗi khi đăng bài");
-  //         }
-
-  //         const data = await response.json();
-  //         console.log("Bài viết đã được đăng:", data);
-  //     } catch (error) {
-  //         console.error("Lỗi khi đăng bài:", error);
-  //     }
-  // };
-
-  //   const handleDangBai = async () => {
-  //     const formData = new FormData();
-  //     formData.append("tennguoidung", user.tennguoidung);
-  //     formData.append("noidung", noidung);
-  //     if (anhDaTai) {
-  //         formData.append("image", anhDaTai); // Gửi file ảnh lên backend
-  //     }
-
-  //     try {
-  //         const response = await fetch("http://localhost:8080/api/baiviet/upload", {
-  //             method: "POST",
-  //             body: formData
-  //         });
-
-  //         const data = await response.json();
-  //         console.log("Bài viết đã được đăng:", data);
-  //     } catch (error) {
-  //         console.error("Lỗi khi đăng bài:", error);
-  //     }
-  // };
+    fetchPosts();
+  }, []);
 
   const handleDangBai = async () => {
     if (!noidung.trim()) return; // Kiểm tra nếu nội dung rỗng
@@ -237,15 +174,123 @@ function Trangchu() {
   // };
 
   return (
-    <>
-    <Navbar />
     <div className="HomeCenterGiuaFromDang">
+      {showprivacyhome && (
+        <div className="modal">
+          <div
+            className="modal_overlay"
+            onClick={() => setHienModal(false)}
+          ></div>
+          <div className="modalprivacy">
+            <div className="modal-title">
+              <div
+                className="modaltitleback"
+                onClick={() => {
+                  setHienModal(true);
+                  setshowprivacyhome(false);
+                }}
+              >
+                <img src={arrowleft} alt="" />
+              </div>
+              <p>Đối tượng của bài viết</p>
+            </div>
+            <div className="modalintroduce">
+              <div className="modalintroducetitleup">
+                <p className="titleup1">Ai có thể xem bài viết của bạn</p>
+                <p className="titleup2">
+                  Bài viết của bạn sẽ hiển thị trên Bảng feed, trang cá nhân và
+                </p>
+                <p className="titleup3">trong kết quả tìm kiếm.</p>
+              </div>
+              <div className="modalintroducetitledown">
+                <div className="modalintroducetitledowncover">
+                  <p className="titledown1">Tuy đối tượng mặc định là</p>
+                  <p className="titledowntmp">&nbsp;Công khai</p>
+                  <p>, nhưng bạn có thể thay đổi</p>
+                </div>
+                <p className="titledown2">đối tượng của riêng bài viết này.</p>
+              </div>
+            </div>
+            <div className="modalmenuprivate">
+              <ul>
+                <li>
+                  <div className="menuprivateleft">
+                    <div className="menuprivateicons">
+                      <img src={earthicon} alt="" className="menuprivateicon" />
+                    </div>
+                  </div>
+                  <div className="menuprivatewrite">
+                    <p className="menuprivatewriteup">Công khai</p>
+                    <p className="menuprivatewritedown">
+                      Bất kỳ ai ở trên hoặc ngoài Facebook
+                    </p>
+                  </div>
+                  <label className="menuprivatetick">
+                    {/* <div classname="menuprivatetick"> */}
+                    <input type="radio" />
+                    {/* </div> */}
+                  </label>
+                </li>
+                <li>
+                  <div className="menuprivateleft">
+                    <div className="menuprivateicons">
+                      <img src={fricon} alt="" className="menuprivateicon" />
+                    </div>
+                  </div>
+                  <div className="menuprivatewrite">
+                    <p className="menuprivatewriteup">Bạn bè</p>
+                    <p className="menuprivatewritedown">
+                      Bạn bè của bạn trên facebook
+                    </p>
+                  </div>
+                  <label className="menuprivatetick">
+                    <input type="radio" name="privacy" />
+                  </label>
+                </li>
+                <li>
+                  <div className="menuprivateleft">
+                    <div className="menuprivateicons">
+                      <img src={lock} alt="" className="menuprivateicon" />
+                    </div>
+                  </div>
+                  <div className="menuprivatewrite">
+                    <p className="menuprivatewriteup">Chỉ mình tôi</p>
+                    <p className="menuprivatewritedown">
+                      Bất kỳ ai ở trên hoặc ngoài Facebook
+                    </p>
+                  </div>
+                  <label className="menuprivatetick">
+                    <input type="radio" name="privacy" />
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div className="modalmenuprivatebutton">
+              <div className="buttonhuy"  onClick={() => {
+                  setHienModal(true);
+                  setshowprivacyhome(false);
+                }}>
+                <p>Hủy</p>
+              </div>
+              <div className="buttonfinish"  onClick={() => {
+                  setHienModal(true);
+                  setshowprivacyhome(false);
+                }}>
+                <button>Xong</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {hienModal && (
         <div className="modal">
           <div
             className="modal_overlay"
             onClick={() => setHienModal(false)}
           ></div>
+          {/* -------- */}
+
+          {/* ------------- */}
           <div className="modal_body" onClick={(e) => e.stopPropagation()}>
             <div className="modal-title">
               <p>Tạo bài viết</p>
@@ -263,14 +308,19 @@ function Trangchu() {
               </div>
               <div className="modalinforuseahaichucnang">
                 <p>{user ? user.tennguoidung : "Đang tải..."}</p>
-                <button className="cong-khai-btn">
-                  <img src={`../../assets/public/images/Icons/earth.svg`} alt="" />
+                <button
+                  className="cong-khai-btn"
+                  onClick={() => {
+                    setHienModal(false); // đóng modal hiện tại
+                    setshowprivacyhome(true); // mở modal mới
+                  }}
+                >
+                  <img src={`/Images/Icons/earth.svg`} alt="" />
                   Công khai
                   <span className="dropdown-arrow">▼</span>
                 </button>
               </div>
             </div>
-
             <div className="modaluserwrite">
               <textarea
                 style={{
@@ -300,6 +350,16 @@ function Trangchu() {
             <div className="modaladdpostcover">
               <div className="modaladdpost">
                 <p>Thêm vào bài viết của bạn</p>
+                <div className="modalpostmenu">
+                  <ul>
+                    <li>
+                      <img src={upicon} alt="" />
+                    </li>
+                    <li>
+                      <img src={friendicon} alt="" />
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
@@ -318,18 +378,79 @@ function Trangchu() {
         </div>
       </div>
     )}; */}
+      <div className="Homebanner">
+        <div className="search-container">
+          <img src={face} alt="Facebook Logo" className="logo" />
+          <div className="search-box">
+            <i>
+              <img
+                src={kinh}
+                style={{ width: "15px", height: "15px", fill: "blue" }}
+              />
+            </i>
+            <input type="text" placeholder="Tìm kiếm trên Facebook" />
+          </div>
+        </div>
+
+        <div className="Bannercenter">
+          <ul>
+            <li>
+              <img src={home} />
+            </li>
+            <li>
+              <img src={video} />
+            </li>
+            <li>
+              <img src={market} />
+            </li>
+            <li>
+              <img src={group} />
+            </li>
+            <li>
+              <img src={game} />
+            </li>
+          </ul>
+        </div>
+
+        <div className="Bannerright">
+          <ul>
+            <li>
+              <img src={"/Images/Icons/menu.svg"} />
+            </li>
+            <li>
+              <img src={mess} />
+            </li>
+            <li>
+              <img src={bell} />
+            </li>
+            {/* <li>
+            <img src={testa} />
+            </li> */}
+          </ul>
+          <div className="Bannerrightanh">
+            <img
+              src={"/Images/Icons/testa.jpg"}
+              className="picavata"
+              onClick={hienkhunganh}
+            />
+            <div className="Bannerrightanhduoi">
+              <img src={picarrow} className="picavatedown" />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="HomeCenter">
         <div className="HomeCenterTrai">
           <div className="HomeCenterTraiTren">
             <ul>
-              <li className="liavatar" onClick={handleClickProfile}>
+              <li className="liavatar" onClick={handleClick}>
                 <div className="centraiavatar">
-                  <img src={testa} />
+                  <img src={"/Images/Icons/testa.jpg"} />
                 </div>
                 {/* <p>Trọng Tấn Dương</p> */}
                 <p>{user ? user.tennguoidung : "Đang tải..."}</p>
               </li>
-              <li onClick={handleClickFriend}>
+              <li>
                 <div className="menu1"></div>
                 <p>Bạn bè</p>
               </li>
@@ -374,7 +495,10 @@ function Trangchu() {
         <div className="HomeCenterGiua">
           <div className="post-box">
             <div className="post-header">
-              <img src={"../../assets/public/images/Icons/testa.jpg"} className="avatar" />
+              <img
+                src={"/Images/Icons/testa.jpg"}
+                className="avatarhomewriter"
+              />
               <input
                 type="text"
                 className="input-box"
@@ -398,79 +522,10 @@ function Trangchu() {
             </div>
           </div>
           <div className="postall">
-            {dsBaiViet.length > 0 ? (
+            {Array.isArray(dsBaiViet) && dsBaiViet.length > 0 ? (
               dsBaiViet.map((post) => (
                 <div key={post.id} className="postitem">
-                  <div className="postitemup">
-                    {/* <img
-                      src={post.user?.avatarUrl || "/Images/Imgbia/default.png"} // avatar user
-                      className="avatar"
-                    /> */}
-                    <div className="postitemupright">
-                      {/* <p className="postname">
-                        {post.user?.fullName || "Người dùng"}
-                      </p> */}
-                      <p className="postdate">
-                        {(() => {
-                          const now = new Date();
-                          const postDate = new Date(post.createAt);
-
-                          const diffMs = now - postDate;
-                          const diffSeconds = Math.floor(diffMs / 1000);
-                          const diffMinutes = Math.floor(diffSeconds / 60);
-                          const diffHours = Math.floor(diffMinutes / 60);
-                          const diffDays = Math.floor(diffHours / 24);
-
-                          if (diffDays > 0) {
-                            return `${diffDays} ngày trước`;
-                          } else if (diffHours > 0) {
-                            return `${diffHours} giờ trước`;
-                          } else if (diffMinutes > 0) {
-                            return `${diffMinutes} phút trước`;
-                          } else {
-                            return `Vừa xong`;
-                          }
-                        })()}
-                      </p>
-                    </div>
-                    <div className="postitemore">
-                      <img
-                        src={`../../assets/public/images/Icons/more.svg`}
-                        alt=""
-                        onClick={() => setHienTest(true)}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="postinput">
-                    <p>{post.content}</p> {/* nội dung bài viết */}
-                    {post.image && (
-                      <img
-                        src={post.image.urlImage}
-                        alt="Post"
-                        style={{ maxWidth: "100%", marginTop: "10px" }}
-                      />
-                    )}
-                  </div>
-
-                  <div className="gachngang1"></div>
-
-                  <div className="postemotion">
-                    <div className="postemotionlike">
-                      <img src={`../../assets/public/images/Icons/like.svg`} alt="" />
-                      <p>Thích</p>
-                    </div>
-
-                    <div className="postemotioncmt">
-                      <img src={`../../assets/public/images/Icons/cmt.svg`} alt="" />
-                      <p>Bình luận</p>
-                    </div>
-
-                    <div className="postemotionshare">
-                      <img src={`../../assets/public/images/Icons/share.svg`} alt="" />
-                      <p>Chia sẻ</p>
-                    </div>
-                  </div>
+                  {/* nội dung post */}
                 </div>
               ))
             ) : (
@@ -485,10 +540,10 @@ function Trangchu() {
           {isVisibleavatar && (
             <div className="khungpicavata">
               <div className="khungpicavatatren">
-                <div className="khungpicavatatrenavatar" onClick={handleClickProfile}>
+                <div className="khungpicavatatrenavatar" onClick={handleClick}>
                   <div className="khungpicavatatanh">
                     <img
-                      src={"../../assets/public/images/Icons/testa.jpg"}
+                      src={"/Images/Icons/testa.jpg"}
                       style={{ width: 38, height: 38, borderRadius: "50%" }}
                     />
                     <p>{user ? user.tennguoidung : "Đang tải..."}</p>
@@ -550,7 +605,6 @@ function Trangchu() {
         </div>
       </div>
     </div>
-    </>
   );
 }
 
