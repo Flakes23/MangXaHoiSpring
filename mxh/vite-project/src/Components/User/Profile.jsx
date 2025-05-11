@@ -151,8 +151,8 @@ const Profile = () => {
 
                     <div className="profile-posts">
                     {posts.map(post => (
-          <Post key={post.id} post={post} currentUserAvatar={avatarSrc} />
-        ))}
+                    <Post key={post.id} post={post} currentUserAvatar={avatarSrc} />
+                    ))}
                     </div>
                 </div>
             </div>
